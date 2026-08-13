@@ -1,0 +1,40 @@
+schema_version: 1
+preset_id: case_video
+
+zones:
+  A_SYNC_LOCKED:
+    description: interview_or_walk_and_talk_with_visible_mouth
+    lip_sync_required: true
+    audio_restructure_allowed: false
+  B_SYNC_FLEX:
+    description: distant_side_or_back_view_of_speaker
+    lip_sync_required: limited
+    audio_restructure_allowed: limited
+    resync_before_return_to_visible_mouth: true
+  C_AUDIO_FREE:
+    description: factory_equipment_screen_dashboard_or_b_roll
+    lip_sync_required: false
+    audio_restructure_allowed: true
+    continuous_picture_preferred: true
+  D_ACTION_LOCKED:
+    description: touch_swipe_machine_cycle_page_change_or_demonstration
+    action_must_remain_complete: true
+    cut_inside_key_action: false
+
+audio_cut:
+  crossfade_ms: [20, 60]
+  preserve_consonant_attack: true
+  preserve_word_end: true
+  continuous_ambience_bed: true
+  abrupt_factory_noise_change_allowed: false
+
+b_roll:
+  match_spoken_function_to_visible_evidence: true
+  use_unrelated_factory_shot_for_variety: false
+  cover_dense_interview_jump_cuts: true
+  protect_screen_text_and_product_edges: true
+
+anchor_rules:
+  record_next_sync_anchor: true
+  return_to_A_without_resync: false
+  multicamera_audio_alignment_required: true

@@ -1,0 +1,61 @@
+schema_version: 1
+preset_id: factory_demo_hybrid_quality_v1
+locked: true
+
+automatic_zero_tolerance:
+  black_frame_count: 0
+  flash_frame_count: 0
+  subtitle_overflow_count: 0
+  broken_action_count: 0
+
+automatic_required:
+  width: 1080
+  height: 1920
+  fps: 60
+  channels: 2
+  title_exact_frames: 3
+  full_decode: true
+  edit_plan_schema_valid: true
+  source_sha256_present: true
+  route_cut_delta_frames_max: 2
+  action_ranges_complete: true
+  track_duration_delta_seconds_max: 0.10
+
+manual_listening_and_viewing:
+  audio_subtitle_mismatch_count: 0
+  paraphrased_subtitle_count: 0
+  professional_term_rewrite_count: 0
+  word_loss_count: 0
+  visible_lip_sync_error_count: 0
+  water_or_metallic_artifact_count: 0
+  robotic_voice_count: 0
+  audio_cut_pop_count: 0
+  abrupt_ambience_change_count: 0
+  denoise_natural_pass: true
+  bgm_audible_pass: true
+  bgm_masks_dialogue_count: 0
+  uncovered_jump_cut_count: 0
+  wrong_visual_for_dialogue_count: 0
+  short_shot_discomfort_count: 0
+  speaker_posture_jump_count: 0
+  tablet_page_unmotivated_jump_count: 0
+  return_to_speaker_resync_pass: true
+  perceptual_continuity_pass: true
+  tablet_picture_continuity_pass: true
+
+null_lock:
+  rule: unreviewed_human_fields_must_remain_null
+  protected_fields:
+    - audio_subtitle_mismatch_count
+    - word_loss_count
+    - visible_lip_sync_error_count
+    - perceptual_continuity_pass
+
+completion:
+  automatic_checks_must_pass: true
+  all_manual_fields_must_be_reviewed: true
+  export_file_must_exist_and_decode: true
+  human_active_seconds_max: 120
+  critical_ui_actions_max: 10
+  elapsed_seconds_max_for_30_to_60s_video: 480
+  repeated_environment_success_rate_minimum: 0.9

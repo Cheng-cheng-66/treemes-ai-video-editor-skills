@@ -1,0 +1,34 @@
+schema_version: 1
+preset_id: case_video
+
+tracks:
+  dialogue:
+    role: anchor
+    preserve_original_words: true
+    denoise_if_needed: true
+    denoise_requires_human_review: true
+  ambience:
+    role: follower
+    continuous_under_factory_b_roll: true
+    remove_all_factory_sound: false
+  bgm:
+    role: follower
+    base_gain_db: -8.0
+    stereo: true
+    lyrics_allowed: false
+    fade_in_seconds: 1.5
+    fade_out_seconds: 1.5
+
+mix:
+  dialogue_priority: true
+  bgm_must_not_mask_professional_terms: true
+  ambience_must_not_jump_at_audio_cuts: true
+  export_channels: 2
+  target_integrated_lufs: -16.0
+  target_true_peak_dbtp: -1.5
+
+human_review:
+  water_or_robot_artifact_pass: null
+  denoise_natural_pass: null
+  bgm_audible_pass: null
+  bgm_dialogue_balance_pass: null

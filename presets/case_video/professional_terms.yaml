@@ -1,0 +1,24 @@
+schema_version: 1
+preset_id: case_video
+
+terms:
+  - MES
+  - 智能三色灯
+  - 三色灯
+  - 交通灯协议
+  - 设备协议
+  - 绕过每个设备协议
+  - 安灯系统
+  - 计件工资
+  - 客户报价
+  - 员工激励机制
+  - 工价
+  - 标工基建
+  - 电子作业指导书
+  - 生产看板
+
+rules:
+  preserve_exact_spoken_form: true
+  automatic_synonym_replacement: false
+  automatic_abbreviation: false
+  low_confidence_requires_human_review: true

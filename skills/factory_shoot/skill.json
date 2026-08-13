@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "factory_shoot",
+  "name": "工厂实拍",
+  "status": "planned",
+  "enabled": false,
+  "entrypoint": null,
+  "requires": [],
+  "models": [],
+  "review_gate": "candidate_shots_must_be_confirmed_by_human"
+}

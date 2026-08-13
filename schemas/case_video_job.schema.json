@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "case_video_job.schema.json",
+  "title": "Case Video Job",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "job_id",
+    "source",
+    "story_units",
+    "human_review",
+    "release_state"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256",
+        "duration_seconds"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "story_units": {
+      "type": "object"
+    },
+    "human_review": {
+      "type": "object",
+      "required": [
+        "transcript_pass",
+        "professional_terms_pass",
+        "story_pass",
+        "playback_pass"
+      ]
+    },
+    "release_state": {
+      "enum": [
+        "ANALYSIS",
+        "PLAN_PENDING_REVIEW",
+        "RENDERED_PENDING_REVIEW",
+        "READY",
+        "FAILED"
+      ]
+    }
+  }
+}

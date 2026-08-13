@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/ai-video-editor/acceptance/v1.schema.json",
+  "title": "AI Video Editor V1 Release Acceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release",
+    "repository",
+    "samples",
+    "automatic_checks",
+    "manual_checks",
+    "blockers",
+    "decisions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "release": {
+      "const": "v1.0.0"
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch", "commit", "main_commit"],
+      "properties": {
+        "branch": {
+          "const": "release/v1.0.0"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "main_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "category", "status", "real_media"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": ["standard", "complex", "abnormal"]
+          },
+          "status": {
+            "enum": ["NOT_RUN", "PASS", "FAIL", "BLOCKED", "MISSING"]
+          },
+          "real_media": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": ["string", "null"]
+          },
+          "sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "evidence": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "automatic_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/automatic_check"
+      }
+    },
+    "manual_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/manual_check"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allow_rc1",
+        "allow_merge_main",
+        "allow_v1_tag",
+        "allow_new_computer_stable_install"
+      ],
+      "properties": {
+        "allow_rc1": {
+          "type": "boolean"
+        },
+        "allow_merge_main": {
+          "type": "boolean"
+        },
+        "allow_v1_tag": {
+          "type": "boolean"
+        },
+        "allow_new_computer_stable_install": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "automatic_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": ["NOT_RUN", "PASS", "FAIL", "BLOCKED"]
+        },
+        "evidence": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "manual_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "NOT_REVIEWED",
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "reviewer": {
+          "type": ["string", "null"]
+        },
+        "evidence": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}

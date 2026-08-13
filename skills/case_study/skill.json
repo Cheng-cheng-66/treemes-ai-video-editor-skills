@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "case_study",
+  "name": "客户案例",
+  "status": "beta_analysis_ready_render_pending_first_acceptance",
+  "enabled": true,
+  "entrypoint": "skills.case_study.runner:analyze",
+  "requires": [
+    "ffmpeg",
+    "ffprobe",
+    "whisper-cli",
+    "opencv-yunet"
+  ],
+  "models": [
+    "ggml-small-q5_1.bin",
+    "face_detection_yunet_2026may.onnx"
+  ],
+  "review_gate": "privacy_authorization_facts_and_final_story_require_human_approval"
+}

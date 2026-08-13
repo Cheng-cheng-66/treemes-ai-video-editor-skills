@@ -1,0 +1,47 @@
+schema_version: 1
+preset_id: factory_demo_hybrid_jianying_audio_v1
+locked: true
+
+application:
+  display_name: 剪映专业版
+  path: /Applications/VideoFusion-macOS.app
+  bundle_id: com.lemon.lvpro
+  locked_version: 7.9.0
+  locked_build: "366"
+  preserve_existing_login_session: true
+  automatic_update_must_not_change_production_environment: true
+
+timeline:
+  V1: picture_master_no_audio.mp4
+  A1: dialogue_raw.wav
+  A2: ambience.wav
+  A3: bgm.wav
+  all_tracks_start_at_seconds: 0.0
+  picture_timeline_locked: true
+  subtitles_burned_into_picture_master: true
+  jianying_auto_captions: forbidden
+  jianying_visual_filters: forbidden
+  jianying_transitions: forbidden
+  jianying_free_text_effects: forbidden
+
+dialogue:
+  native_noise_reduction_required: true
+  native_noise_reduction_human_review_pass_required: true
+  voice_enhancement_default: false
+  preserve_natural_voice: true
+
+automation:
+  prefer_template_copy_and_stable_asset_replacement: true
+  ui_automation_mode: supervised
+  fixed_coordinates_only: forbidden
+  state_or_visual_confirmation_required: true
+  screenshots_required: true
+  action_log_required: true
+  actual_export_required: true
+
+performance_targets:
+  human_active_seconds_max: 120
+  critical_ui_actions_max: 10
+  total_elapsed_seconds_max_for_30_to_60s_video: 480
+  repeated_successes_required: 9
+  repeated_trials: 10

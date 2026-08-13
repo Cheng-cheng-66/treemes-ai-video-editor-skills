@@ -1,0 +1,48 @@
+schema_version: 1
+preset_id: factory_demo_sync_zones_v1
+locked: true
+
+zones:
+  A_SYNC_LOCKED:
+    definition: speaking_mouth_clearly_visible
+    video_time_change_allowed: false
+    audio_time_change_allowed: false
+    audio_picture_relative_offset_change_allowed: false
+    anchor_required_at_start: true
+    confidence_minimum_for_automatic_assignment: 0.92
+
+  B_SYNC_FLEX:
+    definition: speaker_distant_side_partial_or_mouth_unclear
+    limited_audio_compression_allowed: true
+    maximum_unanchored_duration_seconds: 4.0
+    next_A_SYNC_LOCKED_anchor_required: true
+    confidence_minimum_for_automatic_assignment: 0.88
+
+  C_AUDIO_FREE:
+    definition: tablet_panel_equipment_line_or_hand_closeup_without_visible_mouth
+    dialogue_may_be_edited_as_voice_over: true
+    prefer_continuous_visual_segment: true
+    picture_cut_at_each_audio_pause_forbidden: true
+    continuous_ambience_bed_required: true
+    confidence_minimum_for_automatic_assignment: 0.94
+
+  D_ACTION_LOCKED:
+    definition: click_swipe_page_change_or_equipment_operation
+    full_action_must_be_preserved: true
+    cut_inside_action_forbidden: true
+    action_start_and_end_frames_required: true
+    dialogue_may_continue_as_voice_over: true
+    confidence_minimum_for_automatic_assignment: 0.95
+
+audio:
+  dialogue_cut_crossfade_ms:
+    minimum: 20
+    default: 40
+    maximum: 60
+  ambience:
+    continuous_bed_required: true
+    abrupt_noise_floor_change_forbidden: true
+  return_to_visible_speaker:
+    sync_anchor_required: true
+    maximum_offset_frames: 1
+

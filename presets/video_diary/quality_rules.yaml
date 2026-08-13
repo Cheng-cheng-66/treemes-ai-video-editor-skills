@@ -1,0 +1,81 @@
+schema_version: 7
+preset_id: video_diary_quality_rules_v7_source_aspect_inheritance
+locked: true
+required_checks:
+  source_aspect_ratio_detected: true
+  source_rotation_metadata_inspected: true
+  output_aspect_ratio_decision_recorded: true
+  output_aspect_ratio_matches_source_by_default: true
+  output_dimensions_match_aspect_ratio_decision: true
+  aspect_ratio_conversion_has_explicit_authorization: true
+  opening_cover_present: true
+  opening_cover_template_locked: true
+  opening_cover_selectable: true
+  opening_cover_exactly_two_frames: true
+  opening_cover_has_title: true
+  opening_cover_has_no_subtitles: true
+  cover_only_date_and_day_changed: true
+  opening_day_present: true
+  cover_similarity_pass: true
+  mes_text_centered_in_yellow_box: true
+  cover_text_overflow_count_zero: true
+  cover_title_maximum_two_lines: true
+  persistent_header_present: true
+  persistent_header_position_locked: true
+  persistent_header_size_locked: true
+  persistent_header_until_video_end: true
+  persistent_header_day_present: true
+  persistent_header_same_source_style: true
+  persistent_header_not_covering_face: true
+  subtitle_font_size_locked: true
+  subtitle_position_locked: true
+  jianying_voice_separation_enabled: true
+  jianying_voice_separation_mode_locked: true
+  jianying_voice_volume_locked: true
+  jianying_bgm_volume_locked: true
+thresholds:
+  opening_cover_frame_count: 2
+  opening_cover_fps: 30
+  subtitle_lines_per_event_max: 2
+  subtitle_overflow_count_max: 0
+  subtitle_safe_area_violations_max: 0
+  audio_subtitle_mismatch_count_max: 0
+  paraphrased_subtitle_count_max: 0
+  professional_term_rewrite_count_max: 0
+  spoken_word_omission_count_max: 0
+  black_frame_duration_seconds_max: 0.30
+  silence_duration_seconds_max: 1.00
+  cover_similarity_percent_min: 80
+  cover_brand_margin_delta_pixels_max: 4
+  overexposed_frame_ratio_max: 0.02
+  skin_tone_abnormal_frame_count_max: 0
+  excessive_smoothing_frame_count_max: 0
+  face_geometry_warp_count_max: 0
+  output_integrated_loudness_target_lufs: -16
+  output_true_peak_max_dbtp: -1
+  jianying_voice_volume_db: 10.0
+  jianying_bgm_volume_db: -8.0
+content_integrity:
+  meaning_changed_by_edit_count_max: 0
+  necessary_information_removed_count_max: 0
+  narrative_break_count_max: 0
+image_naturalness:
+  subtle_brightness_allowed: true
+  subtle_denoise_allowed: true
+  subtle_sharpen_allowed: true
+  face_geometry_warp_default_allowed: false
+  enterprise_professional_look_required: true
+completion_gate:
+  unknown_source_orientation_must_block_render: true
+  unauthorized_aspect_ratio_conversion_must_block_render: true
+  output_aspect_ratio_mismatch_must_block_delivery: true
+  manual_review_status_allowed_before_review: NOT_REVIEWED
+  manual_review_pass_required_for_release: true
+  full_decode_must_pass: true
+  representative_frame_review_must_pass: true
+  all_required_checks_must_pass: true
+  all_thresholds_must_pass: true
+artifacts:
+  quality_report: outputs/video_pilot/quality_report_v5.json
+  mismatch_report: outputs/video_pilot/subtitle_audio_diff_report_v5.md
+  current_status: outputs/video_pilot/CURRENT_STATUS.md

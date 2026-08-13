@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "video_diary",
+  "name": "视频日记",
+  "status": "beta",
+  "enabled": true,
+  "entrypoint": "skills.video_diary.runner:render",
+  "requires": ["python>=3.11", "node", "ffmpeg", "ffprobe"],
+  "aspect_ratio_policy": {
+    "default": "inherit_source",
+    "landscape": "1920x1080",
+    "portrait": "1080x1920",
+    "conversion_requires_explicit_authorization": true
+  },
+  "models": [],
+  "presets": [
+    "presets/video_diary/cover.yaml",
+    "presets/video_diary/header.yaml",
+    "presets/video_diary/subtitle.yaml",
+    "presets/video_diary/bgm.yaml",
+    "presets/video_diary/editing_rules.yaml",
+    "presets/video_diary/quality_rules.yaml"
+  ]
+}

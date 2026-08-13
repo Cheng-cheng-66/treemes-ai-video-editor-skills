@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skill_manifest.schema.json",
+  "title": "AI Video Editing Skill Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "status",
+    "enabled",
+    "entrypoint",
+    "requires",
+    "models"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "enabled": {"type": "boolean"},
+    "entrypoint": {"type": ["string", "null"]},
+    "requires": {"type": "array", "items": {"type": "string"}},
+    "models": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "output": "outputs/video_pilot/7-22-13_视频日记人工精修标准版_v5.mp4",
+    "sha256": "966b2f2f292f8ceedc2967abab3e56238cf21d802f0847bb0bc5e0a0cc7a2fbc",
+    "ass": "outputs/video_pilot/7-22-13_视频日记人工精修标准版_v5.ass",
+    "plan": "tests/fixtures/video_diary/standard_plan.json",
+    "captions": "tests/fixtures/video_diary/standard_captions.json",
+    "source_environment_variable": "VIDEO_DIARY_STANDARD_SOURCE"
+  },
+  "cases": [
+    {
+      "id": "standard",
+      "availability": "baseline_output_only",
+      "release_required": true
+    },
+    {
+      "id": "complex",
+      "availability": "missing",
+      "release_required": true,
+      "needed": "long pauses, false starts, fast speech, and difficult professional terms"
+    },
+    {
+      "id": "abnormal",
+      "availability": "missing",
+      "release_required": true,
+      "needed": "missing audio, corrupt input, invalid captions, or insufficient disk fixture"
+    }
+  ]
+}

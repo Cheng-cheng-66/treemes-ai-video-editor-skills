@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "job_id": "example_case_study",
+  "source": {
+    "path": "var/inputs/synthetic_case.mp4",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "duration_seconds": 10.0
+  },
+  "story_units": {
+    "customer_identity": {"status": "pending", "evidence": []},
+    "industry_and_factory_context": {"status": "pending", "evidence": []},
+    "problem_or_management_need": {"status": "pending", "evidence": []},
+    "implementation_or_usage_evidence": {"status": "pending", "evidence": []},
+    "role_specific_workflow": {"status": "pending", "evidence": []},
+    "outcome_or_management_value": {"status": "pending", "evidence": []},
+    "complete_closing": {"status": "pending", "evidence": []}
+  },
+  "human_review": {
+    "transcript_pass": null,
+    "professional_terms_pass": null,
+    "story_pass": null,
+    "playback_pass": null
+  },
+  "release_state": "ANALYSIS"
+}

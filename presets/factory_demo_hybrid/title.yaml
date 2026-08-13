@@ -1,0 +1,38 @@
+schema_version: 1
+preset_id: factory_demo_hybrid_opening_title_v1
+locked: true
+
+canvas:
+  width: 1080
+  height: 1920
+  fps: 60
+
+duration:
+  exact_frames: 3
+  seconds_at_60fps: 0.05
+  body_starts_immediately_after_title: true
+
+layout:
+  alignment: center
+  maximum_lines: 3
+  safe_area: {left: 72, right: 1008, top: 520, bottom: 1320}
+  face_overlap_forbidden: true
+
+font:
+  file: /System/Library/Fonts/STHeiti Medium.ttc
+  character: heavy_bold_sans
+  default_size_px: 118
+  minimum_size_px: 94
+  maximum_size_px: 138
+  stroke_color: "#000000"
+  stroke_width_px: 14
+
+colors:
+  primary_white: "#FFFFFF"
+  primary_yellow: "#FFD900"
+  optional_red_emphasis: "#FF2038"
+  maximum_red_emphasis_phrases: 1
+
+content:
+  paraphrase_requires_editor_or_user_approval: true
+  preserve_professional_terms: true

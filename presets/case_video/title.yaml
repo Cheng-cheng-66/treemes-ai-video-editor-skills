@@ -1,0 +1,36 @@
+schema_version: 1
+preset_id: case_video
+
+canvas:
+  width: 1080
+  height: 1920
+
+opening_title:
+  present: true
+  default_frames: 3
+  opening_only: true
+  persistent_header: false
+  background_source: first_establishing_or_customer_location_shot
+  alignment: center
+  maximum_lines: 3
+  avoid_face: true
+  avoid_customer_logo: true
+  colors:
+    primary: "#FFD900"
+    secondary: "#FFFFFF"
+    outline: "#000000"
+  outline_px: 8
+  bold: true
+  content_pattern:
+    - customer_name
+    - industry_or_factory_type
+    - MES_case_topic
+  unverifiable_metric_in_title_allowed: false
+  use_claim_stronger_than_source: false
+
+chapter_titles:
+  default_enabled: false
+  enable_only_when_long_case_needs_orientation: true
+  derive_from_verified_section_content: true
+  maximum_duration_seconds: 1.2
+  flashy_transition_allowed: false

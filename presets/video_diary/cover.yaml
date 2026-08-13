@@ -1,0 +1,169 @@
+schema_version: 5
+preset_id: video_diary_cover_v5_source_aspect_profiles
+locked: true
+reference:
+  source_image: codex-clipboard-0dde3294-557d-4952-b20d-1cf0b37c1974.jpg
+  match_mode: visual_reference_proportional
+  minimum_visual_similarity_percent: 80
+  target_visual_similarity_percent: 90
+canvas:
+  width: 1080
+  height: 1920
+  fps: 30
+canvas_selection:
+  default: inherit_source
+  portrait:
+    aspect_ratio: "9:16"
+    width: 1080
+    height: 1920
+  landscape:
+    aspect_ratio: "16:9"
+    width: 1920
+    height: 1080
+duration:
+  frames: 2
+  fps: 30
+  seconds: 0.066667
+background:
+  mode: clone_first_body_frame
+date:
+  variable: true
+  source_priority:
+    - explicit_publish_date
+    - video_metadata_creation_date
+  format: YYYY/MM/DD
+  default_for_current_video: 2026/07/23
+day:
+  variable: true
+  format: "Day<number>"
+  current_value: Day13
+  source: series_sequence
+locked_elements:
+  rec:
+    text: "REC"
+    dot:
+      x: 76
+      y: 71
+      size: 8
+    x: 76
+    y: 66
+    font_file: /System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf
+    font_size: 22
+    color: "#FFF200"
+  bracket:
+    type: four_corner_marks
+    color: "#FFF200"
+    stroke_width: 7
+    left_x: 74
+    right_x: 417
+    top_y: 124
+    bottom_y: 445
+    cap_length: 54
+    vertical_length: 54
+  mes:
+    text: MES
+    x_mode: visual_bounds_centered_in_bracket
+    y: 174
+    font_file: /System/Library/Fonts/Supplemental/Arial Bold.ttf
+    font_size: 100
+    color: "#FFFFFF"
+  chinese_brand:
+    text: 日记
+    x_mode: visual_bounds_centered_in_bracket
+    visual_center_correction_x: -7
+    y: 293
+    font_file: /System/Library/Fonts/STHeiti Medium.ttc
+    font_size: 100
+    color: "#FFFFFF"
+  diary:
+    text: Diary
+    x: 194
+    y: 414
+    font_file: /System/Library/Fonts/Supplemental/Times New Roman Bold.ttf
+    font_size: 16
+    color: "#FFF200"
+  date:
+    right_x: 1000
+    y: 126
+    font_file: /System/Library/Fonts/Supplemental/Times New Roman Bold.ttf
+    font_size: 82
+    color: "#FFFFFF"
+    align: right
+  day:
+    right_x: 1015
+    y: 205
+    font_file: /System/Library/Fonts/Supplemental/Arial Black.ttf
+    font_size: 128
+    color: "#FFFFFF"
+    align: right
+  title:
+    source: edit_plan.title
+    optional_explicit_lines_source: edit_plan.cover_title_lines
+    maximum_lines: 2
+    x_mode: horizontal_center
+    line_alignment: center
+    y: 1285
+    line_step: 100
+    font_file: /System/Library/Fonts/Supplemental/Songti.ttc
+    selected_font_variant: B_songti
+    font_size: 82
+    line_spacing: 16
+    color: "#FFFFFF"
+    outline_color: "#111111"
+    outline_width: 3
+landscape_locked_elements:
+  rec:
+    x: 56
+    y: 30
+    font_size: 22
+  bracket:
+    left_x: 55
+    right_x: 465
+    top_y: 70
+    bottom_y: 450
+    stroke_width: 7
+  mes:
+    y: 120
+    font_size: 100
+  chinese_brand:
+    y: 240
+    font_size: 100
+  diary:
+    x: 195
+    y: 414
+    font_size: 16
+  date:
+    right_x: 1870
+    y: 50
+    font_size: 82
+  day:
+    right_x: 1870
+    y: 130
+    font_size: 128
+  title:
+    y: 770
+    line_step: 106
+    font_size: 82
+constraints:
+  only_mutable_fields:
+    - date.text
+    - day.text
+    - title.text
+  exact_cover_frames: 2
+  no_subtitles_on_cover: true
+  title_required: true
+  title_maximum_lines: 2
+  title_safe_width_pixels: 900
+  title_must_not_cover_face: true
+  day_number_required: true
+  mes_horizontal_margin_delta_pixels_max: 4
+  chinese_brand_horizontal_margin_delta_pixels_max: 4
+  main_brand_vertical_margin_delta_pixels_max: 4
+  text_overflow_in_bracket_max: 0
+  measured_current_template:
+    mes_left_margin_pixels: 67
+    mes_right_margin_pixels: 65
+    chinese_brand_left_margin_pixels: 72
+    chinese_brand_right_margin_pixels: 70
+    main_brand_top_margin_pixels: 50
+    main_brand_bottom_margin_pixels: 48

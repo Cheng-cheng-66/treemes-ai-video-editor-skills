@@ -1,0 +1,51 @@
+schema_version: 1
+preset_id: case_video
+
+automatic_zero_tolerance:
+  - black_frame_count
+  - flash_frame_count
+  - subtitle_overflow_count
+  - multiline_subtitle_count
+  - broken_action_count
+  - uncovered_jump_cut_count
+  - wrong_visual_for_dialogue_count
+
+human_zero_tolerance:
+  - audio_subtitle_mismatch_count
+  - paraphrased_subtitle_count
+  - professional_term_rewrite_count
+  - customer_name_error_count
+  - industry_term_error_count
+  - unsupported_metric_claim_count
+  - unsupported_outcome_claim_count
+  - visible_lip_sync_error_count
+
+story_gate:
+  customer_identity_present: required
+  industry_context_present: required
+  problem_or_management_need_present: required
+  implementation_or_usage_evidence_present: required
+  role_specific_workflow_present: required
+  outcome_or_management_value_present: required
+  complete_closing_present: required
+  title_dependency_for_comprehension: forbidden
+
+continuity_gate:
+  interview_answer_has_required_question_or_context: required
+  b_roll_matches_current_semantics: required
+  visible_action_complete: required
+  ambience_continuity_pass: required
+  return_to_visible_mouth_resynced: required
+
+manual_review_defaults:
+  audio_subtitle_mismatch_count: null
+  professional_term_rewrite_count: null
+  customer_claim_accuracy_pass: null
+  perceptual_continuity_pass: null
+  denoise_natural_pass: null
+  bgm_dialogue_balance_pass: null
+  final_case_story_pass: null
+
+completion:
+  technical_qc_alone_is_release_ready: false
+  all_required_human_fields_must_be_reviewed: true

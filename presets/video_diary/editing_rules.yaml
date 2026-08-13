@@ -1,0 +1,96 @@
+schema_version: 5
+preset_id: video_diary_editing_rules_v5_source_aspect_inheritance
+locked: true
+aspect_ratio_policy:
+  default: inherit_source_display_orientation
+  inspect_before_editing:
+    - encoded_width
+    - encoded_height
+    - sample_aspect_ratio
+    - rotation_metadata
+    - effective_display_orientation
+  source_landscape_output:
+    aspect_ratio: "16:9"
+    resolution: "1920x1080"
+  source_portrait_output:
+    aspect_ratio: "9:16"
+    resolution: "1080x1920"
+  conversion_requires:
+    - explicit_output_aspect_ratio
+    - aspect_ratio_override_authorized_true
+    - aspect_ratio_override_reason
+  forbid_silent_portrait_default: true
+  forbid_silent_landscape_default: true
+  square_or_ambiguous_source: BLOCK_AND_REQUIRE_EXPLICIT_OUTPUT_RATIO
+subtitle_policy:
+  final_audio_is_source_of_truth: true
+  synchronized_subtitles_must_be_verbatim: true
+  summary_text_may_only_be_used_for_cover_or_title: true
+  delete_audio_and_video_when_deleting_spoken_words: true
+  professional_term_corrections_must_preserve_meaning: true
+forbidden:
+  - summarize_synchronized_subtitles
+  - paraphrase_synchronized_subtitles
+  - replace_words_with_synonyms
+  - reorder_spoken_words
+  - add_unspoken_words
+  - remove_spoken_words_without_cutting_media
+  - delete_meaningful_natural_pause
+  - default_all_videos_to_1_08_speed
+  - apply_image_denoise_to_every_video
+  - apply_sharpen_to_every_video
+  - alter_approved_breath_cuts_without_explicit_issue
+  - infer_shorter_subtitle_from_general_meaning
+  - replace_low_confidence_professional_term_without_review
+speed_policy:
+  default: 1.00
+  allowed_minimum: 1.00
+  allowed_maximum: 1.08
+  speed_above_one_requires:
+    - original_pace
+    - post_cut_pace
+    - reason
+cut_traceability:
+  every_remove_interval_requires_reason: true
+  preserve_approved_remove_intervals_exactly: true
+date_policy:
+  prefer_video_capture_date: true
+  fallback_to_publish_date: true
+editorial_judgment:
+  priority_order:
+    - preserve_meaning_and_narrative_integrity
+    - verbatim_audio_subtitle_match
+    - natural_cut_continuity
+    - visual_comfort
+    - brand_consistency
+    - feature_count
+  reject_if_cut_changes_meaning: true
+  reject_if_jump_cut_is_visually_disruptive: true
+  simple_and_professional_over_decorative: true
+image_treatment:
+  target: natural_clean_professional
+  default_mode: none
+  decision_required_per_video: true
+  allow:
+    - subtle_brightness
+    - subtle_skin_tone_lift
+    - low_strength_denoise
+    - low_strength_sharpen
+  default_forbid:
+    - face_geometry_warp
+    - aggressive_skin_smoothing
+    - aggressive_face_slimming
+    - artificial_skin_whitening
+  face_geometry_requires_landmark_tracking_and_manual_frame_review: true
+audio_treatment:
+  decision_required_per_video: true
+  classes: [A, B, C, D]
+  jianying_voice_standard:
+    required: true
+    voice_separation_enabled: true
+    voice_separation_mode: keep_voice_only
+    voice_volume_db: 10.0
+    failure_policy: BLOCK_EXPORT_AND_REQUIRE_REVIEW
+  integrated_loudness_target_lufs: -16
+  true_peak_max_dbtp: -1
+  class_d_requires_manual_review: true

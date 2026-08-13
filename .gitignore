@@ -1,0 +1,71 @@
+# macOS and editors
+.DS_Store
+*.swp
+*.tmp
+
+# Python / Node local environments
+.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.pytest_cache/
+.coverage
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+configs/local.json
+configs/local.*.json
+
+# User data, media, generated artifacts, caches, and logs
+inputs/
+outputs/
+cache/
+caches/
+logs/
+models/
+weights/
+checkpoints/
+var/
+runs/
+experiments/
+references/
+reports/
+work/
+tmp/
+temp/
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.wav
+*.WAV
+*.m4a
+*.aac
+*.mp3
+*.mkv
+*.avi
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.log
+
+# Other machine-local configuration and credentials
+local_config.*
+config.local.*
+secrets.*
+credentials.*
+
+# Jianying / CapCut state
+JianyingPro/
+CapCut/
+drafts/
+User Data/
+Cache/
+
+# Release/update working state
+.releases/
+.release_state.json

@@ -1,0 +1,119 @@
+schema_version: 4
+preset_id: video_diary_header_v4_source_aspect_profiles
+locked: true
+reference:
+  source_image: codex-clipboard-997f97ca-ec3a-47a1-8fde-c61387f3aca1.jpg
+  match_mode: one_to_one_proportional
+canvas:
+  width: 1080
+  height: 1920
+canvas_selection:
+  default: inherit_source
+  portrait:
+    aspect_ratio: "9:16"
+    width: 1080
+    height: 1920
+  landscape:
+    aspect_ratio: "16:9"
+    width: 1920
+    height: 1080
+safe_area:
+  top: 36
+  left: 36
+  right: 35
+scale_from_cover: 0.92
+start_frame: 3
+start_seconds: 0.066667
+end: video_end
+transition:
+  type: hard_frame_boundary
+  cover_frames: [1, 2]
+  header_begins_on_frame: 3
+locked_elements:
+  bracket:
+    type: four_corner_marks
+    color: "#FFF200"
+    stroke_width: 6
+    left_x: 36
+    right_x: 318
+    top_y: 64
+    bottom_y: 314
+    cap_length: 32
+    vertical_length: 66
+  mes:
+    text: MES
+    x_mode: visual_bounds_centered_in_bracket
+    y: 98
+    font_file: /System/Library/Fonts/Supplemental/Arial Bold.ttf
+    font_size: 92
+    color: "#FFFFFF"
+    outline_color: "#111111"
+    outline_width: 3
+  chinese_brand:
+    text: 日记
+    x_mode: visual_bounds_centered_in_bracket
+    visual_center_correction_x: -7
+    y: 200
+    font_file: /System/Library/Fonts/STHeiti Medium.ttc
+    font_size: 94
+    color: "#FFFFFF"
+    outline_color: "#111111"
+    outline_width: 3
+  date:
+    right_x: 1040
+    y: 92
+    font_file: /System/Library/Fonts/Supplemental/Times New Roman Bold.ttf
+    font_size: 75
+    color: "#FFFFFF"
+    outline_color: "#111111"
+    outline_width: 3
+    align: right
+  day:
+    right_x: 1040
+    y: 166
+    font_file: /System/Library/Fonts/Supplemental/Arial Black.ttf
+    font_size: 118
+    color: "#FFFFFF"
+    outline_color: "#111111"
+    outline_width: 3
+    align: right
+landscape_locked_elements:
+  bracket:
+    left_x: 35
+    right_x: 290
+    top_y: 28
+    bottom_y: 250
+    stroke_width: 5
+  mes:
+    y: 48
+    font_size: 65
+  chinese_brand:
+    y: 124
+    font_size: 68
+  date:
+    right_x: 1880
+    y: 24
+    font_size: 52
+  day:
+    right_x: 1880
+    y: 80
+    font_size: 80
+constraints:
+  only_mutable_fields:
+    - date.text
+    - day.text
+  persistent_until_video_end: true
+  position_locked: true
+  size_locked: true
+  no_per_video_reflow: true
+  must_be_same_source_scaled_version_of_cover: true
+  mes_horizontal_margin_delta_pixels_max: 4
+  chinese_brand_horizontal_margin_delta_pixels_max: 4
+  main_brand_vertical_margin_delta_pixels_max: 4
+  measured_current_template:
+    mes_left_margin_pixels: 44
+    mes_right_margin_pixels: 42
+    chinese_brand_left_margin_pixels: 58
+    chinese_brand_right_margin_pixels: 56
+    main_brand_top_margin_pixels: 34
+    main_brand_bottom_margin_pixels: 31

@@ -1,0 +1,55 @@
+schema_version: 1
+preset_id: factory_demo_editorial_rules_v1
+locked: true
+
+priorities:
+  - preserve_meaning_and_narrative
+  - preserve_visible_lip_sync
+  - preserve_complete_actions
+  - preserve_factory_ambience_continuity
+  - match_visual_to_dialogue
+  - preserve_natural_visual_continuity
+  - add_visual_variety_only_with_reason
+
+visual:
+  cut_picture_at_every_audio_pause: forbidden
+  visual_change_without_editorial_reason: forbidden
+  uncovered_jump_cut: forbidden
+  tablet_page_jump_without_reason: forbidden
+  same_person_posture_jump: forbidden
+  minimum_default_shot_seconds: 0.65
+  short_shot_requires_reason_below_seconds: 0.50
+
+audio:
+  dialogue_crossfade_ms_range: [20, 60]
+  continuous_factory_ambience_bed: required
+  pop_or_click_at_dialogue_cut: forbidden
+  abrupt_noise_floor_change: forbidden
+
+semantics:
+  function_mentioned_should_match_system_or_device_view: true
+  change_person_meaning: forbidden
+  remove_required_context: forbidden
+  synchronized_subtitle_rewrite: forbidden
+
+planning:
+  required_files:
+    - visual_analysis.json
+    - transcript.json
+    - sync_zones.json
+    - edit_plan.json
+    - continuity_report.json
+  edit_action_required_fields:
+    - time_range
+    - current_speaker
+    - visual_type
+    - mouth_visible
+    - sync_zone
+    - audio_treatment
+    - visual_treatment
+    - hand_action
+    - next_sync_anchor
+    - edit_reason
+    - risk_level
+    - confidence
+

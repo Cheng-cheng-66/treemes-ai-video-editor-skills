@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "mode": "synthetic_example",
+  "source": "var/inputs/synthetic_source.mp4",
+  "source_duration_seconds": 3.0,
+  "output_aspect_ratio": "source",
+  "speed": 1.0,
+  "title": "合成示例",
+  "cover_title_lines": ["合成示例"],
+  "image_treatment": {
+    "mode": "none",
+    "reason": "synthetic example uses neutral image treatment",
+    "manual_visual_review": "NOT_REVIEWED"
+  },
+  "audio_treatment": {
+    "class": "A",
+    "reason": "synthetic example does not authorize production audio claims",
+    "manual_listening_review": "NOT_REVIEWED"
+  },
+  "bgm_mode": "off",
+  "remove": []
+}

@@ -1,0 +1,43 @@
+schema_version: 1
+preset_id: factory_demo_hybrid_editorial_v1
+locked: true
+inherits: null
+video_diary_presets_must_remain_untouched: true
+
+route:
+  primary: codex_picture_blueprint_plus_jianying_native_audio_plus_ffmpeg_qc
+  fallback: codex_ffmpeg_open_toolchain
+  jianying_may_change_picture_timeline: false
+  jianying_may_generate_subtitles: false
+  jianying_may_add_effects: false
+
+priorities:
+  - preserve_meaning_and_story_context
+  - preserve_visible_lip_sync
+  - preserve_complete_actions
+  - keep_C_AUDIO_FREE_picture_continuous
+  - preserve_continuous_factory_ambience
+  - match_visual_to_dialogue
+  - preserve_natural_continuity
+
+cuts:
+  picture_cut_at_every_audio_pause: forbidden
+  visual_change_without_editorial_reason: forbidden
+  uncovered_jump_cut: forbidden
+  minimum_default_shot_seconds: 0.65
+  short_shot_requires_reason_below_seconds: 0.50
+
+semantics:
+  change_person_meaning: forbidden
+  remove_required_context: forbidden
+  synchronized_subtitle_rewrite: forbidden
+  professional_term_rewrite: forbidden
+
+dependencies:
+  forbidden_for_v1:
+    - video-use
+    - HyperFrames
+    - Remotion
+  non_blocking_research:
+    - DeepFilterNet3
+    - ClearerVoice

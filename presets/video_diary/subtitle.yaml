@@ -1,0 +1,85 @@
+schema_version: 4
+preset_id: video_diary_subtitle_v4_source_aspect_profiles
+locked: true
+canvas:
+  width: 1080
+  height: 1920
+canvas_selection:
+  default: inherit_source
+  portrait:
+    aspect_ratio: "9:16"
+    width: 1080
+    height: 1920
+    margin_bottom: 345
+    maximum_rendered_width_including_outline: 888
+  landscape:
+    aspect_ratio: "16:9"
+    width: 1920
+    height: 1080
+    margin_bottom: 105
+    maximum_rendered_width_including_outline: 1608
+font:
+  file: /System/Library/Fonts/STHeiti Medium.ttc
+  family: Heiti SC
+  size: 68
+  weight: medium
+  color: "#FFFFFF"
+outline:
+  color: "#111111"
+  width: 3.5
+shadow:
+  color: "#000000"
+  opacity: 0.35
+  x: 1.5
+  y: 1.5
+position:
+  alignment: bottom_center
+  margin_bottom: 345
+  baseline_y: 1575
+safe_area:
+  left: 96
+  right: 96
+  top: 1250
+  bottom: 1645
+  maximum_rendered_width_including_outline: 888
+line_rules:
+  lines_per_event_max: 2
+  prefer_single_line: true
+  auto_wrap: false
+  auto_shrink: false
+  multiline_allowed_when_required: true
+  split_on_semantic_pause: true
+  never_split_inside_term: true
+  minimum_duration_seconds: 0.45
+  maximum_duration_seconds: 4.50
+content_rules:
+  source: final_edited_audio
+  verbatim_only: true
+  allow_professional_term_correction: true
+  allow_paraphrase: false
+  allow_summary: false
+  allow_synonym_replacement: false
+  allow_word_order_change: false
+  allow_unspoken_addition: false
+  allow_spoken_word_omission: false
+  low_confidence_professional_term_policy: user_feedback_plus_domain_dictionary_plus_audio_recheck
+  professional_terms_must_remain_complete:
+    - 标准工时
+    - 标工计件
+    - 计件工资
+    - 客户报价
+    - 员工激励机制
+    - MES系统
+    - 设备节拍
+    - 工艺工程师
+validation:
+  width_measurement: ffmpeg_drawtext_actual_font_metrics_plus_outline_envelope
+  maximum_text_width_before_outline: 880
+  reject_if_rendered_width_including_outline_exceeds: 888
+  reject_if_more_than_two_lines: true
+  measure_each_line_against_safe_width: true
+  reject_if_safe_area_violation: true
+  reject_if_audio_subtitle_mismatch_count_above: 0
+  reject_if_paraphrased_subtitle_count_above: 0
+  reject_if_professional_term_rewrite_count_above: 0
+  reject_if_spoken_word_omission_count_above: 0

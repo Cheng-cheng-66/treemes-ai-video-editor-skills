@@ -1,0 +1,58 @@
+schema_version: 1
+preset_id: case_video
+content_type: long_form_customer_case
+
+duration:
+  standard_seconds: [300, 720]
+  extended_seconds: [720, 1200]
+  derived_short_clip_is_primary_case: false
+
+required_story_units:
+  - customer_identity
+  - industry_and_factory_context
+  - pre_implementation_problem_or_management_need
+  - implementation_or_usage_evidence
+  - role_specific_workflow
+  - outcome_or_management_value
+  - complete_closing
+
+preferred_story_order:
+  - opening_customer_and_topic
+  - factory_context
+  - problem_or_reason_for_selection
+  - implementation_and_device_connection
+  - operator_supervisor_pmc_management_usage
+  - system_screen_and_factory_evidence
+  - measured_or_observed_value
+  - customer_evaluation_and_closing
+
+hard_rules:
+  preserve_customer_name: true
+  preserve_industry_terms: true
+  preserve_speaker_intent: true
+  keep_question_when_answer_depends_on_it: true
+  move_only_complete_semantic_units: true
+  remove_required_context_for_pacing: false
+  invent_customer_claims: false
+  invent_metrics: false
+  strengthen_unverified_results: false
+  treat_title_as_required_context: false
+
+claim_evidence:
+  accepted_sources:
+    - verified_spoken_audio
+    - readable_on_screen_evidence
+    - user_provided_case_fact
+    - approved_case_document
+  number_requires_explicit_source: true
+  outcome_requires_explicit_source: true
+  unresolved_claim_status: null
+
+editing_judgment:
+  content_completeness_before_duration: true
+  evidence_before_visual_variety: true
+  natural_continuity_before_cut_density: true
+  remove_retake_only_if_complete_version_remains: true
+  long_pause_threshold_seconds: 1.0
+  compressed_pause_target_seconds: [0.35, 0.6]
+  preserve_topic_change_pause: true

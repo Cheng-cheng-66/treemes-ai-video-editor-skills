@@ -1,0 +1,46 @@
+schema_version: 3
+preset_id: video_diary_bgm_v3_jianying_minus_8db
+locked: true
+modes:
+  - default
+  - off
+  - custom
+default:
+  source: configs.default.video_diary.bgm
+  provider: jianying
+  track_name: "科技主题  Global Technology Background"
+  material_id: "7377866594003568681"
+  delivery_method: jianying_template
+  same_entitled_account_required_on_each_computer: true
+  availability_must_be_rechecked_before_export: true
+  standalone_cache_distribution: forbidden
+  ordinary_video_diary_mode: default
+  jianying_initial_volume_db: -8.0
+local_or_custom:
+  separate_distribution_license_required: true
+  local_file_required: true
+  authorization_status_required: CONFIRMED
+mix:
+  voice_is_primary: true
+  voice_minus_bgm_control_gap_db: 18.0
+  sidechain_ducking:
+    enabled: true
+    threshold: 0.03
+    ratio: 8
+    attack_ms: 20
+    release_ms: 350
+  fade_in_seconds: 1.0
+  fade_out_seconds: 1.0
+  hard_loop_forbidden: true
+manual_review:
+  default_status: NOT_REVIEWED
+  required_checks:
+    - speech_clarity
+    - bgm_not_too_loud
+    - bgm_audible
+    - rhythm_not_conflicting
+    - natural_ending
+legal_boundary:
+  jianying_cache_must_not_be_packaged: true
+  jianying_track_must_not_be_mixed_outside_jianying: true
+  use_separately_licensed_music_for_fully_automatic_ffmpeg_fleet: true

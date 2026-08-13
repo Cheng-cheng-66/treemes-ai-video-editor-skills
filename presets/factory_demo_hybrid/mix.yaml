@@ -1,0 +1,36 @@
+schema_version: 1
+preset_id: factory_demo_hybrid_mix_v1
+locked: true
+
+output:
+  sample_rate: 48000
+  channels: 2
+  channel_layout: stereo
+  integrated_loudness_lufs: -16.0
+  true_peak_dbfs: -1.5
+
+dialogue:
+  track: A1
+  pan: center
+  initial_gain_db: 0.0
+  target_before_mix_lufs: -17.5
+
+ambience:
+  track: A2
+  initial_gain_db: -24.0
+  continuous: true
+  abrupt_level_change_forbidden: true
+
+bgm:
+  track: A3
+  initial_gain_db: -20.0
+  target_before_mix_lufs: -25.5
+  fade_in_seconds: 0.5
+  fade_out_seconds: 0.8
+  must_be_perceptible: true
+  may_not_mask_dialogue: true
+
+release:
+  jianying_native_master_preserved: true
+  loudness_standardized_copy_required: true
+  fallback_open_route_required: true

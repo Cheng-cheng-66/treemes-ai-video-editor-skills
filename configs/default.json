@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "channel": "beta",
+  "paths": {
+    "data_root": "var",
+    "inputs": "inputs",
+    "outputs": "outputs",
+    "cache": "cache",
+    "logs": "logs",
+    "models": "models"
+  },
+  "video_diary": {
+    "renderer": "skills/video_diary/legacy/render_video_diary_v5.js",
+    "node_command": "node",
+    "ffmpeg_command": "ffmpeg",
+    "ffprobe_command": "ffprobe",
+    "aspect_ratio": {
+      "default_mode": "inherit_source",
+      "landscape_output": "1920x1080",
+      "portrait_output": "1080x1920",
+      "explicit_override_required_for_conversion": true,
+      "inspect_rotation_metadata": true,
+      "failure_policy": "BLOCK_RENDER_IF_SOURCE_ORIENTATION_IS_UNKNOWN"
+    },
+    "jianying_audio": {
+      "enabled": true,
+      "voice_separation_enabled": true,
+      "voice_separation_mode": "keep_voice_only",
+      "voice_volume_db": 10.0,
+      "application_stage": "jianying",
+      "failure_policy": "BLOCK_EXPORT_AND_REQUIRE_REVIEW"
+    },
+    "bgm": {
+      "provider": "jianying",
+      "name": "科技主题  Global Technology Background",
+      "material_id": "7377866594003568681",
+      "path": "",
+      "applicable_scenes": [
+        "ordinary_video_diary"
+      ],
+      "default_start_seconds": 0.0,
+      "jianying_initial_volume_db": -8.0,
+      "voice_minus_bgm_control_gap_db": 18.0,
+      "fade_in_seconds": 1.0,
+      "fade_out_seconds": 1.0,
+      "authorization_status": "JY_ACCOUNT_ENTITLEMENT_REQUIRED_AT_EXPORT",
+      "distribution_status": "DO_NOT_PACKAGE_STANDALONE_CACHE",
+      "delivery_method": "jianying_template",
+      "source_note": "Jianying VIP PGC music; use inside Jianying with the entitled account and re-check availability before each export"
+    },
+    "font_profile": "auto",
+    "fonts": {
+      "macos": {
+        "subtitle": "/System/Library/Fonts/STHeiti Medium.ttc",
+        "cover_title": "/System/Library/Fonts/Supplemental/Songti.ttc",
+        "latin_bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+        "date": "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf",
+        "day": "/System/Library/Fonts/Supplemental/Arial Black.ttf",
+        "micro": "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf"
+      },
+      "windows": {
+        "subtitle": "C:/Windows/Fonts/msyh.ttc",
+        "cover_title": "C:/Windows/Fonts/simsun.ttc",
+        "latin_bold": "C:/Windows/Fonts/arialbd.ttf",
+        "date": "C:/Windows/Fonts/timesbd.ttf",
+        "day": "C:/Windows/Fonts/ariblk.ttf",
+        "micro": "C:/Windows/Fonts/arialbd.ttf"
+      }
+    }
+  },
+  "models": {
+    "required": []
+  }
+}

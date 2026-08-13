@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "mode": "tight_publish_preview",
+  "source": "INPUT_REQUIRED.mov",
+  "source_duration_seconds": 131.64,
+  "speed": 1.00,
+  "title": "标准工时，才是工厂真正的数据资产",
+  "cover_title_lines": [
+    "标准工时",
+    "才是工厂真正的数据资产"
+  ],
+  "brand": "MES\\N日记",
+  "date": "2026/07/22",
+  "image_treatment": {
+    "mode": "none",
+    "reason": "测试基线画面不执行额外亮度、降噪或锐化",
+    "manual_visual_review": "NOT_REVIEWED"
+  },
+  "audio_treatment": {
+    "class": "A",
+    "reason": "测试基线只执行目标响度标准化",
+    "manual_listening_review": "NOT_REVIEWED"
+  },
+  "bgm_mode": "off",
+  "remove": [
+    {"start": 0.000, "end": 1.440, "reason": "leading silence"},
+    {"start": 6.844, "end": 8.200, "reason": "long pause"},
+    {"start": 11.414, "end": 12.547, "reason": "long pause"},
+    {"start": 17.374, "end": 18.601, "reason": "long pause"},
+    {"start": 22.989, "end": 23.490, "reason": "long pause"},
+    {"start": 28.367, "end": 29.143, "reason": "long pause"},
+    {"start": 32.866, "end": 34.594, "reason": "long pause"},
+    {"start": 38.848, "end": 39.995, "reason": "long pause"},
+    {"start": 43.225, "end": 44.053, "reason": "long pause"},
+    {"start": 45.928, "end": 47.457, "reason": "long pause"},
+    {"start": 49.312, "end": 49.873, "reason": "long pause"},
+    {"start": 51.676, "end": 52.741, "reason": "long pause"},
+    {"start": 55.073, "end": 56.025, "reason": "long pause"},
+    {"start": 57.606, "end": 58.916, "reason": "long pause"},
+    {"start": 65.017, "end": 65.825, "reason": "long pause"},
+    {"start": 69.360, "end": 77.520, "reason": "speaker false starts; keep final complete take"},
+    {"start": 79.982, "end": 81.420, "reason": "long pause"},
+    {"start": 85.939, "end": 87.330, "reason": "long pause"},
+    {"start": 88.018, "end": 88.585, "reason": "long pause"},
+    {"start": 91.661, "end": 93.149, "reason": "long pause"},
+    {"start": 103.008, "end": 103.698, "reason": "long pause"},
+    {"start": 109.159, "end": 110.219, "reason": "long pause"},
+    {"start": 114.059, "end": 114.704, "reason": "long pause"},
+    {"start": 130.255, "end": 131.640, "reason": "trailing silence"}
+  ]
+}

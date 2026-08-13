@@ -1,0 +1,35 @@
+schema_version: 1
+preset_id: factory_demo_quality_gates_v1
+locked: true
+
+zero_tolerance:
+  audio_subtitle_mismatch_count: 0
+  paraphrased_subtitle_count: 0
+  visible_lip_sync_error_count: 0
+  broken_action_count: 0
+  uncovered_jump_cut_count: 0
+  wrong_visual_for_dialogue_count: 0
+  subtitle_overflow_count: 0
+  black_frame_count: 0
+  flash_frame_count: 0
+
+required_checks:
+  opening_title_present: true
+  opening_title_exact_frames: 3
+  opening_title_face_overlap_count: 0
+  dialogue_cut_pop_count: 0
+  abrupt_factory_noise_change_count: 0
+  unjustified_short_shot_count: 0
+  posture_jump_count: 0
+  tablet_page_jump_count: 0
+  missing_return_sync_anchor_count: 0
+  subtitle_professional_term_rewrite_count: 0
+
+completion_gate:
+  title_template_confirmation_required: true
+  all_zero_tolerance_fields_must_equal_zero: true
+  full_decode_required: true
+  representative_frame_review_required: true
+  audible_headphone_review_required: true
+  manual_review_required_must_be_false: true
+

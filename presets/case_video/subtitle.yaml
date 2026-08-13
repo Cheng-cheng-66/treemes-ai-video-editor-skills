@@ -1,0 +1,45 @@
+schema_version: 1
+preset_id: case_video
+
+canvas:
+  width: 1080
+  height: 1920
+
+style:
+  font_family: STHeiti
+  font_size_px: 58
+  bold: true
+  primary_color: "#FFFFFF"
+  keyword_color: "#FFD900"
+  outline_color: "#000000"
+  outline_px: 6
+  shadow_px: 0
+  alignment: bottom_center
+  margin_left_px: 72
+  margin_right_px: 72
+  margin_bottom_px: 430
+
+layout:
+  preferred_line_count: 1
+  maximum_line_count: 1
+  safe_width_px: 936
+  auto_shrink: false
+  split_long_sentence_at_semantic_pause: true
+  split_professional_term: false
+  split_customer_name: false
+
+content:
+  source_of_truth: final_audio
+  verbatim_required: true
+  summarize: false
+  paraphrase: false
+  replace_synonym: false
+  shorten_professional_term: false
+  add_unsaid_words: false
+  omit_audible_words: false
+
+separate_overlays:
+  speaker_identity_is_sync_subtitle: false
+  customer_name_is_sync_subtitle: false
+  metric_callout_is_sync_subtitle: false
+  use_independent_lower_third_for_identity: true

@@ -1,0 +1,54 @@
+schema_version: 1
+preset_id: factory_demo_opening_title_v1
+locked: true
+batch_application_enabled: false
+confirmation_status: awaiting_user_confirmation
+
+canvas:
+  width: 1080
+  height: 1920
+  default_fps: 60
+
+duration:
+  frames: 3
+  seconds_at_60fps: 0.05
+  body_starts_immediately_after_title: true
+
+layout:
+  alignment: center
+  maximum_lines: 3
+  safe_area:
+    left: 72
+    right: 1008
+    top: 520
+    bottom: 1320
+  face_overlap_forbidden: true
+  allow_vertical_reposition_within_safe_area: true
+
+font:
+  file: /System/Library/Fonts/STHeiti Medium.ttc
+  character: heavy_bold_sans
+  size_px:
+    default: 118
+    minimum: 94
+    maximum: 138
+  stroke:
+    color: "#000000"
+    width_px: 14
+
+colors:
+  primary_white: "#FFFFFF"
+  primary_yellow: "#FFD900"
+  optional_red_emphasis: "#FF2038"
+  maximum_red_emphasis_phrases: 1
+
+content:
+  maximum_characters_per_line: 9
+  automatic_paraphrase_forbidden: true
+  preserve_professional_terms: true
+  title_may_summarize_only_when_user_or_editor_approves: true
+
+evidence:
+  reference_profile: references/factory_demo/style_profile.yaml
+  preview: outputs/factory_demo/factory_demo_title_preview_v1.png
+

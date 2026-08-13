@@ -1,0 +1,50 @@
+schema_version: 2
+preset_id: factory_demo_hybrid_subtitle_v2_large_spaced
+locked: true
+
+canvas:
+  width: 1080
+  height: 1920
+
+font:
+  file: /System/Library/Fonts/STHeiti Medium.ttc
+  family: Heiti SC
+  size_px: 96
+  letter_spacing_px: 4
+  fill: "#FFFFFF"
+  outline_color: "#000000"
+  outline_width_px: 7
+
+position:
+  alignment: bottom_center
+  baseline_y: 1280
+  safe_left: 54
+  safe_right: 1026
+  safe_top: 1130
+  safe_bottom: 1425
+
+line_rules:
+  maximum_lines: 1
+  auto_shrink: false
+  split_at_real_semantic_pause: true
+  never_split_professional_term: true
+  preferred_maximum_cjk_glyphs_per_event: 9
+  maximum_rendered_width_including_outline_px: 972
+  width_measurement_uses_actual_font_metrics: true
+
+content_rules:
+  source_of_truth: final_retained_dialogue
+  verbatim_only: true
+  summary_forbidden: true
+  paraphrase_forbidden: true
+  abbreviation_forbidden: true
+  synonym_replacement_forbidden: true
+  unspoken_addition_forbidden: true
+  spoken_word_omission_forbidden: true
+  human_sentence_review_required: true
+
+emphasis:
+  maximum_phrases_per_event: 1
+  colors: ["#FF2038", "#FFD900"]
+  may_change_color_only: true
+  may_not_change_text: true
