@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from core.config import create_runtime_dirs, load_config
+from core.config import create_runtime_dirs, load_config, write_local_config_template
 
 
 class ConfigTests(unittest.TestCase):
@@ -47,6 +47,35 @@ class ConfigTests(unittest.TestCase):
 
             self.assertTrue(created)
             self.assertTrue(all(path.is_dir() for path in created))
+
+    def test_generated_local_config_remains_portable_after_install_move(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir) / "staged-skill"
+            (root / "configs").mkdir(parents=True)
+            (root / "configs" / "default.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "channel": "beta",
+                        "paths": {"data_root": "var"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            config = load_config(
+                project_root=root,
+                local_path=root / "configs" / "missing.json",
+                environment={},
+            )
+            local = write_local_config_template(config)
+
+            payload = json.loads(local.read_text(encoding="utf-8"))
+            self.assertEqual(payload["paths"]["data_root"], "var")
+
+            moved = Path(temp_dir) / "installed-skill"
+            root.rename(moved)
+            moved_config = load_config(project_root=moved, environment={})
+            self.assertEqual(moved_config.paths.data_root, (moved / "var").resolve())
 
 
 if __name__ == "__main__":

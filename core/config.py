@@ -137,11 +137,18 @@ def write_local_config_template(
     target = destination or config.project_root / "configs" / "local.json"
     if target.exists():
         return target
+    try:
+        portable_data_root = str(config.paths.data_root.relative_to(config.project_root))
+    except ValueError:
+        portable_data_root = str(config.paths.data_root)
+
     payload = {
         "schema_version": 1,
         "channel": config.channel,
         "paths": {
-            "data_root": str(config.paths.data_root),
+            # Keep an in-project runtime directory relative so a validated staged
+            # installation can be moved into its final Codex Skill directory.
+            "data_root": portable_data_root,
         },
         "video_diary": {
             "font_profile": "auto",
