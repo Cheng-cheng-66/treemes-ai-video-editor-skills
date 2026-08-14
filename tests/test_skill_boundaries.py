@@ -1,4 +1,5 @@
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -27,6 +28,15 @@ class SkillBoundaryTests(unittest.TestCase):
 
     def test_skills_do_not_import_each_other(self):
         self.assertEqual(find_boundary_violations(PROJECT_ROOT), [])
+
+    def test_appledouble_sidecars_on_external_macos_volumes_are_ignored(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            skill = root / "skills/example"
+            skill.mkdir(parents=True)
+            (skill / "module.py").write_text("VALUE = 1\n", encoding="utf-8")
+            (skill / "._module.py").write_bytes(b"\x00\x05\x16\x07\xb0\x00")
+            self.assertEqual(find_boundary_violations(root), [])
 
 
 if __name__ == "__main__":

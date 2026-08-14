@@ -14,7 +14,7 @@ from scripts.validate_github_release import (
 
 class GitHubReleasePackageTests(unittest.TestCase):
     def test_actual_version_is_beta(self):
-        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.2")
+        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.3")
         config = json.loads((ROOT / "configs/default.json").read_text())
         self.assertEqual(config["channel"], "beta")
 

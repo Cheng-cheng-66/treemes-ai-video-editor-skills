@@ -9,7 +9,7 @@
 - `v2.0.0`：破坏性架构升级或客户案例正式上线。
 - 预发布使用 `vX.Y.Z-beta.N`。
 
-当前代码版本为 `0.10.0-beta.2`，不是 stable Release。
+当前代码版本为 `0.10.0-beta.3`，不是 stable Release。
 
 ## stable
 
@@ -27,6 +27,7 @@
 ## Release 内容
 
 - Git tag 对应源码
+- macOS 双击安装 ZIP 及 SHA-256 校验文件
 - `VERSION`
 - `CHANGELOG.md` 对应章节
 - 依赖锁、默认配置、`.env.example`

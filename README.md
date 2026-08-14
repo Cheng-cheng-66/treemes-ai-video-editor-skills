@@ -1,32 +1,31 @@
 # AI Video Editing Skills
 
 可迁移的 AI 自动剪辑底座与三个相互隔离的场景工作流。当前版本为
-`0.10.0-beta.2`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
+`0.10.0-beta.3`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
 真实素材、账号状态或受许可限制的媒体。
 
-## 在 Codex 中一键安装
+## 下载后双击安装（macOS）
 
-把下面这句话完整发送给 Codex：
+普通用户不需要复制安装指令：
 
-```text
-请使用 skill-installer 安装公开 GitHub Skill：
-repo=Cheng-cheng-66/treemes-ai-video-editor-skills
-ref=v0.10.0-beta.2
-path=.
-name=ai-video-editing-skills
-```
+1. 下载
+   [`AI-Video-Editing-Skill-macOS-v0.10.0-beta.3.zip`](https://github.com/Cheng-cheng-66/treemes-ai-video-editor-skills/releases/download/v0.10.0-beta.3/AI-Video-Editing-Skill-macOS-v0.10.0-beta.3.zip)。
+2. 双击 ZIP 解压，再双击里面的 `安装.command`。
+3. 看到“安装成功”后重新打开 Codex。
 
-安装完成后，在下一轮对话直接说：
+然后直接说：
 
 ```text
-使用 $ai-video-editing-skills 处理我上传的视频。
-类型：视频日记。
-先分析并生成剪辑计划，字幕必须忠实匹配人声。
+视频日记，处理我上传的视频。
 ```
 
-必须安装仓库根目录 `.`。不要分别安装 `skills/video_diary`、
-`skills/factory_shoot` 或 `skills/case_study`，因为场景工作流共享根目录中的运行库
-与预设。
+安装器会自动放到 Codex 的 Skill 目录；如已安装旧版，会先保留时间戳备份。
+如 macOS 首次拦截未签名脚本，请右键 `安装.command` 选择“打开”。
+
+### 维护人员命令行安装（可选）
+
+只有维护人员需要使用官方 Skill installer。安装单元是仓库根目录 `.`，
+不能分别安装三个场景子目录。
 
 ## 当前支持与真实成熟度
 
@@ -70,7 +69,7 @@ Windows PowerShell：
 .\.venv\Scripts\python.exe scripts\doctor.py --strict
 ```
 
-这一节用于开发和维护；普通 Codex 用户优先使用上方的一键安装方式。
+这一节用于开发和维护；普通 Codex 用户优先使用上方的下载安装包。
 `bootstrap` 会安装 `requirements.lock`、建立本机运行目录并执行测试。模型、
 剪映、BGM权益和客户素材不会随仓库安装。
 
@@ -170,6 +169,6 @@ BGM听感、工厂连续性、客户事实、授权和最终叙事。未审核�
 
 - `vX.Y.Z-beta.N`：允许已记录的人工门禁，但不得隐藏自动测试失败。
 - `vX.Y.Z`：仅在自动、真实样片和人工门禁全部通过后使用。
-- 当前版本：`0.10.0-beta.2`，GitHub Release 必须标记 Pre-release。
+- 当前版本：`0.10.0-beta.3`，GitHub Release 必须标记 Pre-release。
 
 本仓库的授权状态见 [`LICENSE_STATUS.md`](LICENSE_STATUS.md)。

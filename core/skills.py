@@ -59,6 +59,10 @@ def find_boundary_violations(project_root: Path) -> list[str]:
     skills_root = project_root / "skills"
     pattern = re.compile(r"(?:from|import)\s+skills\.([a-z_][a-z0-9_]*)")
     for source in skills_root.glob("*/*.py"):
+        # External macOS volumes can materialize binary AppleDouble metadata as
+        # `._name.py`. It is not Python source and must never enter source scans.
+        if source.name.startswith("._"):
+            continue
         owner = source.parent.name
         for line_number, line in enumerate(
             source.read_text(encoding="utf-8").splitlines(),

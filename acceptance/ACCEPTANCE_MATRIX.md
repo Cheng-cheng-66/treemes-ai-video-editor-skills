@@ -1,6 +1,6 @@
 # Beta release acceptance matrix
 
-Version: `0.10.0-beta.2`
+Version: `0.10.0-beta.3`
 
 Automatic status uses `NOT_RUN`, `PASS`, `FAIL` or `BLOCKED`. Human status uses
 `NOT_REVIEWED`, `PASS`, `FAIL` or `NOT_APPLICABLE`.
@@ -14,6 +14,7 @@ Automatic status uses `NOT_RUN`, `PASS`, `FAIL` or `BLOCKED`. Human status uses
 | synthetic render and full decode | PASS | smoke test |
 | security and large-file scan | PASS | generated security report |
 | clean clone/install | PASS | generated clean-install report |
+| downloadable ZIP shape/checksum/install | PASS | package tests and isolated CODEX_HOME |
 | real video-diary listening | manual gate | may remain NOT_REVIEWED in beta |
 | factory-shoot production entrypoint | disabled | must not be represented as ready |
 | case-study first formal render | pending | must not be represented as approved |
