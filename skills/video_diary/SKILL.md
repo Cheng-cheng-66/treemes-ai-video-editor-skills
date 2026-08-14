@@ -20,7 +20,7 @@ description: Analyze and render branded video-diary footage with source-aspect i
 
 - Inputs: read-only source video, `edit_plan.json`, verbatim caption JSON, date and Day.
 - Outputs: rendered video, actual plan, caption asset and quality report under a runtime directory.
-- Presets: follow `presets/README.md` in this Skill.
+- Presets: follow `skills/video_diary/presets/README.md` from the installed root Skill.
 
 ## Hard rules
 
