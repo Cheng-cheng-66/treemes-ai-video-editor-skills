@@ -357,7 +357,7 @@ def main_for_output(
             },
             "capabilities": {
                 "video_diary": "DEPLOYABLE_PENDING_NEW_MACHINE_REAL_SOURCE_REVIEW",
-                "factory_shoot": "PLANNED_DISABLED_PRESETS_AND_RULES_ONLY",
+                "factory_shoot": "SUPERVISED_HYBRID_BETA_HUMAN_ACCEPTANCE_REQUIRED",
             },
             "video_diary_audio": {
                 "voice_separation_enabled": audio_value(

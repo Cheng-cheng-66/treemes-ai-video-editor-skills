@@ -54,10 +54,12 @@ STAGING_ROOT=$(mktemp -d "$DEST_PARENT/.ai-video-editing-skills.install.XXXXXX")
 STAGED_SKILL="$STAGING_ROOT/$SKILL_NAME"
 
 printf "正在安装 AI 视频剪辑 Skill...\n"
-if command -v ditto >/dev/null 2>&1; then
-  ditto --norsrc "$SOURCE_DIR" "$STAGED_SKILL"
+if command -v rsync >/dev/null 2>&1; then
+  COPYFILE_DISABLE=1 rsync -a --exclude='._*' "$SOURCE_DIR/" "$STAGED_SKILL/"
+elif command -v ditto >/dev/null 2>&1; then
+  COPYFILE_DISABLE=1 ditto --norsrc "$SOURCE_DIR" "$STAGED_SKILL"
 else
-  cp -R "$SOURCE_DIR" "$STAGED_SKILL"
+  COPYFILE_DISABLE=1 cp -R "$SOURCE_DIR" "$STAGED_SKILL"
 fi
 chmod +x "$STAGED_SKILL/安装.command" "$STAGED_SKILL/scripts/install_macos.sh"
 

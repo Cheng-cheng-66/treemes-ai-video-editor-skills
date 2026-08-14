@@ -97,6 +97,7 @@ class DownloadableSkillPackageTests(unittest.TestCase):
             self.assertTrue(
                 (installed / "scripts/smoke_test_factory_shoot.py").is_file()
             )
+            self.assertFalse(any(installed.rglob("._*")))
             (installed / "previous-install-marker.txt").write_text(
                 "preserve me", encoding="utf-8"
             )
