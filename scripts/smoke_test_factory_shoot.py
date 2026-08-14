@@ -189,7 +189,7 @@ def main() -> int:
             if quality["audio_subtitle_mismatch_count"] is not None:
                 print("FAIL: listening-review field was fabricated")
                 return 3
-            decoded = full_decode(result["fallback_preview"])
+            decoded = full_decode(result["technical_preview"])
             if decoded.status != CheckStatus.PASS:
                 print(f"FAIL: factory preview decode - {decoded.detail}")
                 return 4

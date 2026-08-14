@@ -46,6 +46,8 @@ class DownloadableSkillPackageTests(unittest.TestCase):
                     "core/config.py",
                     "presets/video_diary/cover.yaml",
                     "scripts/doctor.py",
+                    "scripts/macos_preflight.py",
+                    "scripts/run_factory_shoot.py",
                     "scripts/smoke_test_factory_shoot.py",
                     "安装.command",
                 ):
@@ -121,6 +123,48 @@ class DownloadableSkillPackageTests(unittest.TestCase):
                     encoding="utf-8"
                 ),
                 "preserve me",
+            )
+
+    def test_installer_never_reports_success_when_dependency_preflight_fails(self):
+        with tempfile.TemporaryDirectory() as temp:
+            temp_root = Path(temp)
+            archive_path = self.build(temp_root)
+            extract_root = temp_root / "extract"
+            with zipfile.ZipFile(archive_path) as archive:
+                archive.extractall(extract_root)
+            installer = extract_root / TOP_LEVEL / "安装.command"
+            installer.chmod(installer.stat().st_mode | stat.S_IXUSR)
+            fake_bin = temp_root / "fake-bin"
+            fake_bin.mkdir()
+            fake_python = fake_bin / "python3"
+            fake_python.write_text(
+                "#!/bin/sh\necho 'FAIL: missing ffmpeg' >&2\nexit 1\n",
+                encoding="utf-8",
+            )
+            fake_python.chmod(0o755)
+            codex_home = temp_root / "codex-home"
+            environment = dict(os.environ)
+            environment.update(
+                {
+                    "CODEX_HOME": str(codex_home),
+                    "AI_VIDEO_SKILL_NONINTERACTIVE": "1",
+                    "PATH": str(fake_bin) + ":/usr/bin:/bin",
+                }
+            )
+            completed = subprocess.run(
+                [str(installer)],
+                cwd=extract_root,
+                env=environment,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(completed.returncode, 0)
+            output = completed.stdout + completed.stderr
+            self.assertNotIn("完整工作流安装成功", output)
+            self.assertFalse(
+                (codex_home / "skills" / TOP_LEVEL).exists(),
+                "failed preflight must not activate the Skill",
             )
 
 

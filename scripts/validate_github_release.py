@@ -22,6 +22,7 @@ ROOT_SKILL_REQUIRED = (
     "core/config.py",
     "scripts/doctor.py",
     "scripts/build_downloadable_skill_package.py",
+    "scripts/macos_preflight.py",
     "scripts/smoke_test_factory_shoot.py",
     "scripts/run_factory_shoot.py",
     "scripts/run_video_diary.py",
@@ -238,8 +239,12 @@ def main() -> int:
     factory = manifests.get("factory_shoot", {})
     if factory.get("enabled") is not True:
         errors.append("factory_shoot must be enabled in this release")
-    if factory.get("entrypoint") != "skills.factory_shoot.runner:run":
-        errors.append("factory_shoot must expose the supervised Beta entrypoint")
+    if factory.get("entrypoint") != "skills.factory_shoot.workflow:prepare_complete":
+        errors.append("factory_shoot must expose the fail-closed complete entrypoint")
+    if factory.get("completion_policy") != (
+        "default_complete_fail_closed_preview_requires_explicit_user_authorization"
+    ):
+        errors.append("factory_shoot must declare the fail-closed completion policy")
 
     if errors:
         for error in sorted(set(errors)):

@@ -589,7 +589,7 @@ def render_factory_assets(
         "bgm": shared / "bgm.wav",
         "subtitles": shared / "subtitles.ass",
         "title": shared / "title.png",
-        "fallback_preview": output_dir / "fallback_preview.mp4",
+        "technical_preview": output_dir / "technical_preview_NOT_DELIVERABLE.mp4",
         "asset_manifest": shared / "asset_manifest.json",
     }
     subtitle_metrics = write_subtitles_ass(
@@ -625,7 +625,7 @@ def render_factory_assets(
         paths["dialogue_raw"],
         paths["ambience"],
         paths["bgm"],
-        paths["fallback_preview"],
+        paths["technical_preview"],
         duration=plan["final_duration_seconds"],
         ffmpeg=ffmpeg,
     )

@@ -167,19 +167,19 @@ class FactoryShootRendererTests(unittest.TestCase):
                 "bgm",
                 "subtitles",
                 "title",
-                "fallback_preview",
+                "technical_preview",
             ):
                 self.assertTrue(outputs[name].is_file(), name)
             picture_probe = probe_video(outputs["picture_master_no_audio"])
             self.assertFalse(
                 any(stream["codec_type"] == "audio" for stream in picture_probe["streams"])
             )
-            preview_probe = probe_video(outputs["fallback_preview"])
+            preview_probe = probe_video(outputs["technical_preview"])
             video = next(row for row in preview_probe["streams"] if row["codec_type"] == "video")
             audio = next(row for row in preview_probe["streams"] if row["codec_type"] == "audio")
             self.assertEqual((video["width"], video["height"]), (270, 480))
             self.assertEqual(audio["channels"], 2)
-            self.assertEqual(full_decode(outputs["fallback_preview"]).status, CheckStatus.PASS)
+            self.assertEqual(full_decode(outputs["technical_preview"]).status, CheckStatus.PASS)
             self.assertIn("平板连续操作", outputs["subtitles"].read_text(encoding="utf-8"))
             manifest = json.loads(outputs["asset_manifest"].read_text(encoding="utf-8"))
             tablet = next(row for row in manifest["segments"] if row["id"] == "tablet")

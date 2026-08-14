@@ -316,7 +316,7 @@ def write_quality_report(
     ffprobe: str = "ffprobe",
 ) -> Path:
     source = Path(plan["source"]).expanduser().resolve()
-    preview = assets["fallback_preview"]
+    preview = assets["technical_preview"]
     manifest = json.loads(assets["asset_manifest"].read_text(encoding="utf-8"))
     preview_probe = probe_video(preview, ffprobe)
     picture_probe = probe_video(assets["picture_master_no_audio"], ffprobe)
@@ -382,6 +382,7 @@ def write_quality_report(
         "job_id": plan["job_id"],
         "workflow": "factory_shoot_hybrid_beta",
         "candidate_video": str(preview),
+        "candidate_delivery_status": "NOT_DELIVERABLE_TECHNICAL_PREVIEW",
         "jianying_native_master": None,
         "jianying_audio_processing_completed": False,
         "automatic_status": "PASS" if not automatic_failures else "FAIL",

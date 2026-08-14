@@ -14,7 +14,7 @@ from scripts.validate_github_release import (
 
 class GitHubReleasePackageTests(unittest.TestCase):
     def test_actual_version_is_beta(self):
-        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.4")
+        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.5")
         config = json.loads((ROOT / "configs/default.json").read_text())
         self.assertEqual(config["channel"], "beta")
 
@@ -30,6 +30,7 @@ class GitHubReleasePackageTests(unittest.TestCase):
             "scripts/doctor.py",
             "scripts/run_video_diary.py",
             "scripts/run_factory_shoot.py",
+            "scripts/macos_preflight.py",
             "scripts/run_case_study.py",
         ):
             self.assertTrue((ROOT / relative).is_file(), relative)
@@ -46,7 +47,14 @@ class GitHubReleasePackageTests(unittest.TestCase):
     def test_factory_skill_is_an_executable_supervised_beta(self):
         manifest = validate_manifest(ROOT / "skills/factory_shoot/skill.json")
         self.assertTrue(manifest["enabled"])
-        self.assertEqual(manifest["entrypoint"], "skills.factory_shoot.runner:run")
+        self.assertEqual(
+            manifest["entrypoint"],
+            "skills.factory_shoot.workflow:prepare_complete",
+        )
+        self.assertEqual(
+            manifest["completion_policy"],
+            "default_complete_fail_closed_preview_requires_explicit_user_authorization",
+        )
 
     def test_release_sources_have_no_media_or_machine_paths(self):
         for relative in (

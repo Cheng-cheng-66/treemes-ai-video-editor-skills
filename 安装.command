@@ -39,6 +39,14 @@ for required in SKILL.md VERSION core presets scripts agents/openai.yaml; do
   fi
 done
 
+if [ "${AI_VIDEO_SKILL_SKIP_DOCTOR:-0}" != "1" ]; then
+  command -v python3 >/dev/null 2>&1 || fail "未找到 Python 3.11+，完整工作流不能安装。"
+  printf "正在检查并补齐 FFmpeg、ffprobe、Node.js 和剪映环境...\n"
+  if ! python3 "$SOURCE_DIR/scripts/macos_preflight.py" --install-missing --require-jianying; then
+    fail "完整工作流依赖未就绪。没有降级安装，也不会输出粗剪代替成片。"
+  fi
+fi
+
 if [ "$(basename -- "$DEST_PARENT")" != "skills" ]; then
   fail "目标目录校验失败：$DEST_PARENT"
 fi
@@ -63,6 +71,27 @@ else
 fi
 chmod +x "$STAGED_SKILL/安装.command" "$STAGED_SKILL/scripts/install_macos.sh"
 
+if [ "${AI_VIDEO_SKILL_SKIP_DOCTOR:-0}" != "1" ]; then
+  printf "正在建立隔离运行环境并执行完整工作流自检...\n"
+  if ! python3 "$STAGED_SKILL/scripts/bootstrap.py" --skip-tests; then
+    fail "Python运行环境安装失败；旧版本未被替换。"
+  fi
+  STAGED_PYTHON="$STAGED_SKILL/.venv/bin/python"
+  if [ ! -x "$STAGED_PYTHON" ]; then
+    fail "隔离Python环境缺失；旧版本未被替换。"
+  fi
+  if ! "$STAGED_PYTHON" "$STAGED_SKILL/scripts/doctor.py" \
+      --strict --workflow factory_shoot --complete; then
+    fail "完整工厂工作流自检失败；旧版本未被替换。"
+  fi
+  if ! "$STAGED_PYTHON" "$STAGED_SKILL/scripts/smoke_test.py"; then
+    fail "视频日记渲染自检失败；旧版本未被替换。"
+  fi
+  if ! "$STAGED_PYTHON" "$STAGED_SKILL/scripts/smoke_test_factory_shoot.py"; then
+    fail "工厂实拍渲染自检失败；旧版本未被替换。"
+  fi
+fi
+
 if [ -e "$DEST" ]; then
   timestamp=$(date +%Y%m%d-%H%M%S)
   BACKUP="${DEST}.backup-${timestamp}"
@@ -81,24 +110,16 @@ if ! mv -- "$STAGED_SKILL" "$DEST"; then
   fail "无法启用新 Skill，旧版本已尝试恢复。"
 fi
 
-printf "\n安装成功。\n"
+printf "\n完整工作流安装成功。\n"
 printf "安装位置：%s\n" "$DEST"
 if [ -n "$BACKUP" ]; then
   printf "旧版本备份：%s\n" "$BACKUP"
 fi
 
 if [ "${AI_VIDEO_SKILL_SKIP_DOCTOR:-0}" = "1" ]; then
-  printf "环境检查：已跳过（测试模式）。\n"
-elif command -v python3 >/dev/null 2>&1; then
-  printf "\n正在检查剪辑环境...\n"
-  if python3 "$DEST/scripts/doctor.py" --strict; then
-    printf "环境检查：通过。\n"
-  else
-    printf "\n提示：Skill 已安装，但本机剪辑依赖尚未全部就绪。\n"
-    printf "重新打开 Codex 后，它会根据检查结果继续配置。\n"
-  fi
+  printf "环境检查：已跳过（仅限自动测试）。\n"
 else
-  printf "环境检查：未找到 Python 3；Skill 已安装，后续由 Codex 完成配置。\n"
+  printf "环境检查：FFmpeg、字幕渲染和剪映完整模式均已通过。\n"
 fi
 
 printf "\n下一步：重新打开 Codex，上传原素材并说明“视频日记”“工厂实拍”或“客户案例”。\n"

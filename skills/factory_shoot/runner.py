@@ -10,6 +10,7 @@ from core.config import AppConfig, create_runtime_dirs, load_config
 from core.process import executable_path
 from core.qc import probe_video
 from skills.factory_shoot.contract import validate_captions, validate_edit_plan
+from skills.factory_shoot.completion import write_completion_request
 from skills.factory_shoot.quality import (
     sha256,
     write_planning_artifacts,
@@ -129,4 +130,11 @@ def run(
         assets,
         request.output_dir,
     )
-    return {**planning, **assets, "jianying_manifest": jianying, "quality_report": quality}
+    completion = write_completion_request(request.output_dir, job_id=plan["job_id"])
+    return {
+        **planning,
+        **assets,
+        "jianying_manifest": jianying,
+        "quality_report": quality,
+        "completion_request": completion,
+    }

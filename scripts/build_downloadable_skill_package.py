@@ -21,6 +21,8 @@ REQUIRED = (
     "core/config.py",
     "presets/video_diary/cover.yaml",
     "scripts/doctor.py",
+    "scripts/macos_preflight.py",
+    "scripts/run_factory_shoot.py",
     "安装.command",
 )
 

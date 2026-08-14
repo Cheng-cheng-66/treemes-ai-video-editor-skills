@@ -2,10 +2,10 @@
   "schema_version": 1,
   "id": "factory_shoot",
   "name": "工厂实拍",
-  "status": "beta_supervised_hybrid",
+  "status": "beta_complete_fail_closed",
   "enabled": true,
-  "entrypoint": "skills.factory_shoot.runner:run",
-  "requires": ["python>=3.11", "ffmpeg", "ffprobe", "Pillow"],
+  "entrypoint": "skills.factory_shoot.workflow:prepare_complete",
+  "requires": ["python>=3.11", "ffmpeg", "ffprobe", "Pillow", "Jianying Pro 7.9.0"],
   "models": [],
   "presets": [
     "presets/factory_demo/editing_rules.yaml",
@@ -18,5 +18,6 @@
     "presets/factory_demo_hybrid/mix.yaml",
     "presets/factory_demo_hybrid/quality_rules.yaml"
   ],
-  "review_gate": "final_listening_lip_sync_terms_story_and_jianying_export_require_human_review"
+  "review_gate": "final_listening_lip_sync_terms_story_and_jianying_export_require_human_review",
+  "completion_policy": "default_complete_fail_closed_preview_requires_explicit_user_authorization"
 }

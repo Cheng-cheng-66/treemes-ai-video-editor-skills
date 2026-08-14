@@ -20,6 +20,10 @@ from core.config import AppConfig, create_runtime_dirs, load_config
 from core.process import executable_path, first_version_line
 from core.qc import CheckResult, CheckStatus, overall_status
 from core.skills import discover_skills, find_boundary_violations
+from skills.factory_shoot.completion import (
+    find_jianying_application,
+    inspect_jianying_application,
+)
 
 
 def _result(
@@ -43,7 +47,12 @@ def _font_paths(config: AppConfig) -> list[Path]:
     return [Path(str(value)).expanduser() for value in fonts.values()]
 
 
-def collect_checks(config: AppConfig) -> list[CheckResult]:
+def collect_checks(
+    config: AppConfig,
+    *,
+    workflow: str | None = None,
+    complete: bool = False,
+) -> list[CheckResult]:
     checks: list[CheckResult] = []
     system = platform.system()
     checks.append(
@@ -210,6 +219,34 @@ def collect_checks(config: AppConfig) -> list[CheckResult]:
             CheckResult("factory_shoot_skill", CheckStatus.FAIL, str(exc))
         )
 
+    if workflow == "factory_shoot" and complete:
+        try:
+            application_path = find_jianying_application()
+            if application_path is None:
+                raise FileNotFoundError(
+                    "Jianying Pro is required for the complete factory workflow"
+                )
+            application = inspect_jianying_application(application_path)
+            if application["version"] != "7.9.0":
+                raise ValueError(
+                    "factory workflow is locked to Jianying 7.9.0; found "
+                    + (application["version"] or "unknown")
+                )
+            checks.append(
+                CheckResult(
+                    "factory_complete_jianying",
+                    CheckStatus.PASS,
+                    (
+                        f"{application['display_name']} {application['version']} "
+                        f"({application['bundle_id']})"
+                    ),
+                )
+            )
+        except (FileNotFoundError, OSError, RuntimeError, TypeError, ValueError) as exc:
+            checks.append(
+                CheckResult("factory_complete_jianying", CheckStatus.FAIL, str(exc))
+            )
+
     violations = find_boundary_violations(PROJECT_ROOT)
     checks.append(
         _result(
@@ -242,12 +279,25 @@ def main() -> int:
         action="store_true",
         help="treat manual-review results as a non-zero exit",
     )
+    parser.add_argument(
+        "--workflow",
+        choices=("video_diary", "factory_shoot", "case_study"),
+    )
+    parser.add_argument(
+        "--complete",
+        action="store_true",
+        help="require external applications needed for a complete workflow",
+    )
     args = parser.parse_args()
     environment = dict(os.environ)
     if args.config:
         environment["AI_VIDEO_EDITOR_CONFIG"] = str(args.config)
     config = load_config(environment=environment)
-    checks = collect_checks(config)
+    checks = collect_checks(
+        config,
+        workflow=args.workflow,
+        complete=args.complete,
+    )
     status = overall_status(checks)
     if args.as_json:
         print(

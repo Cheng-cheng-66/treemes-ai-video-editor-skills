@@ -165,7 +165,7 @@ class FactoryShootRunnerTests(unittest.TestCase):
                     fps_override=24,
                 )
             )
-            self.assertTrue(result["fallback_preview"].is_file())
+            self.assertTrue(result["technical_preview"].is_file())
             self.assertTrue((output / "shared/picture_master_no_audio.mp4").is_file())
             self.assertTrue((output / "visual_analysis.json").is_file())
             quality = json.loads((output / "quality_report.json").read_text(encoding="utf-8"))

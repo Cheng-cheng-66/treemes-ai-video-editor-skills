@@ -30,6 +30,18 @@ class DoctorTests(unittest.TestCase):
         self.assertIn("pillow", check_ids)
         self.assertNotIn(CheckStatus.FAIL, {check.status for check in checks})
 
+    def test_complete_factory_doctor_fails_when_jianying_is_missing(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with patch.dict("os.environ", {"AI_VIDEO_EDITOR_DATA_ROOT": temp_dir}):
+                with patch("scripts.doctor.find_jianying_application", return_value=None):
+                    checks = collect_checks(
+                        load_config(), workflow="factory_shoot", complete=True
+                    )
+        target = next(
+            check for check in checks if check.check_id == "factory_complete_jianying"
+        )
+        self.assertEqual(target.status, CheckStatus.FAIL)
+
 
 if __name__ == "__main__":
     unittest.main()
