@@ -91,6 +91,16 @@ def main() -> int:
         )
         if smoke.returncode != 0:
             return smoke.returncode
+        factory_smoke = subprocess.run(
+            [
+                str(python),
+                str(PROJECT_ROOT / "scripts" / "smoke_test_factory_shoot.py"),
+            ],
+            cwd=PROJECT_ROOT,
+            check=False,
+        )
+        if factory_smoke.returncode != 0:
+            return factory_smoke.returncode
     print("PASS: bootstrap completed")
     return 0
 

@@ -99,5 +99,5 @@ else
   printf "环境检查：未找到 Python 3；Skill 已安装，后续由 Codex 完成配置。\n"
 fi
 
-printf "\n下一步：重新打开 Codex，直接说“视频日记，处理我上传的视频”。\n"
+printf "\n下一步：重新打开 Codex，上传原素材并说明“视频日记”“工厂实拍”或“客户案例”。\n"
 pause_before_exit

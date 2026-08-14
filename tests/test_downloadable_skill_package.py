@@ -46,6 +46,7 @@ class DownloadableSkillPackageTests(unittest.TestCase):
                     "core/config.py",
                     "presets/video_diary/cover.yaml",
                     "scripts/doctor.py",
+                    "scripts/smoke_test_factory_shoot.py",
                     "安装.command",
                 ):
                     self.assertIn(f"{TOP_LEVEL}/{relative}", names)
@@ -93,6 +94,9 @@ class DownloadableSkillPackageTests(unittest.TestCase):
             self.assertTrue((installed / "SKILL.md").is_file())
             self.assertTrue((installed / "agents/openai.yaml").is_file())
             self.assertTrue((installed / "scripts/doctor.py").is_file())
+            self.assertTrue(
+                (installed / "scripts/smoke_test_factory_shoot.py").is_file()
+            )
             (installed / "previous-install-marker.txt").write_text(
                 "preserve me", encoding="utf-8"
             )
