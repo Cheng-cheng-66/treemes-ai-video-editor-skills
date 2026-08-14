@@ -26,6 +26,8 @@ class DoctorTests(unittest.TestCase):
         self.assertIn("runtime_directories", check_ids)
         self.assertIn("disk_space", check_ids)
         self.assertIn("video_diary_skill", check_ids)
+        self.assertIn("factory_shoot_skill", check_ids)
+        self.assertIn("pillow", check_ids)
         self.assertNotIn(CheckStatus.FAIL, {check.status for check in checks})
 
 

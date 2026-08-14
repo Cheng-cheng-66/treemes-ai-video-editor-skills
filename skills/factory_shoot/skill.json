@@ -2,10 +2,21 @@
   "schema_version": 1,
   "id": "factory_shoot",
   "name": "工厂实拍",
-  "status": "planned",
-  "enabled": false,
-  "entrypoint": null,
-  "requires": [],
+  "status": "beta_supervised_hybrid",
+  "enabled": true,
+  "entrypoint": "skills.factory_shoot.runner:run",
+  "requires": ["python>=3.11", "ffmpeg", "ffprobe", "Pillow"],
   "models": [],
-  "review_gate": "candidate_shots_must_be_confirmed_by_human"
+  "presets": [
+    "presets/factory_demo/editing_rules.yaml",
+    "presets/factory_demo/sync_rules.yaml",
+    "presets/factory_demo/subtitle.yaml",
+    "presets/factory_demo/title.yaml",
+    "presets/factory_demo/quality_rules.yaml",
+    "presets/factory_demo_hybrid/editorial.yaml",
+    "presets/factory_demo_hybrid/jianying_audio.yaml",
+    "presets/factory_demo_hybrid/mix.yaml",
+    "presets/factory_demo_hybrid/quality_rules.yaml"
+  ],
+  "review_gate": "final_listening_lip_sync_terms_story_and_jianying_export_require_human_review"
 }

@@ -22,6 +22,8 @@ ROOT_SKILL_REQUIRED = (
     "core/config.py",
     "scripts/doctor.py",
     "scripts/build_downloadable_skill_package.py",
+    "scripts/smoke_test_factory_shoot.py",
+    "scripts/run_factory_shoot.py",
     "scripts/run_video_diary.py",
     "scripts/run_case_study.py",
     "安装.command",
@@ -128,6 +130,12 @@ def validate_json_files(files: list[Path]) -> None:
 
 
 def validate_examples() -> None:
+    from skills.factory_shoot.contract import (
+        validate_captions as validate_factory_captions,
+    )
+    from skills.factory_shoot.contract import (
+        validate_edit_plan as validate_factory_plan,
+    )
     from skills.case_study.contract import validate_job_contract
     from skills.video_diary.runner import validate_edit_plan
 
@@ -144,6 +152,21 @@ def validate_examples() -> None:
                 encoding="utf-8"
             )
         )
+    )
+    factory_plan = validate_factory_plan(
+        json.loads(
+            (ROOT / "skills/factory_shoot/examples/edit_plan.json").read_text(
+                encoding="utf-8"
+            )
+        )
+    )
+    validate_factory_captions(
+        json.loads(
+            (ROOT / "skills/factory_shoot/examples/captions.json").read_text(
+                encoding="utf-8"
+            )
+        ),
+        final_duration_seconds=factory_plan["final_duration_seconds"],
     )
 
 
@@ -212,8 +235,11 @@ def main() -> int:
     for path in files:
         errors.extend(scan_file(path))
 
-    if manifests.get("factory_shoot", {}).get("enabled") is not False:
-        errors.append("factory_shoot must remain disabled in this release")
+    factory = manifests.get("factory_shoot", {})
+    if factory.get("enabled") is not True:
+        errors.append("factory_shoot must be enabled in this release")
+    if factory.get("entrypoint") != "skills.factory_shoot.runner:run":
+        errors.append("factory_shoot must expose the supervised Beta entrypoint")
 
     if errors:
         for error in sorted(set(errors)):

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "final_edited_audio",
+  "captions": [
+    {"start": 0.1, "end": 1.8, "text": "如果有这三个生产难题"},
+    {"start": 2.0, "end": 3.0, "text": "我就是解决方案"},
+    {"start": 6.0, "end": 7.8, "text": "回到人物继续说明"}
+  ],
+  "human_review": {
+    "audio_subtitle_match_pass": null,
+    "professional_terms_pass": null
+  }
+}

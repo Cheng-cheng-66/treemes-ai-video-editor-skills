@@ -1,4 +1,4 @@
 interface:
   display_name: "AI 视频剪辑工作流"
-  short_description: "Install and run three guarded AI video editing workflows"
-  default_prompt: "Use $ai-video-editing-skills to select the correct workflow, analyze my video, create a traceable edit plan, and preserve all quality gates."
+  short_description: "Run video diary, factory shoot, and case workflows"
+  default_prompt: "Use $ai-video-editing-skills to select and execute the correct guarded video workflow for my uploaded source."

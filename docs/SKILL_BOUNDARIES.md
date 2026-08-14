@@ -24,7 +24,10 @@
 
 ## factory_shoot
 
-未来拥有设备/产线/工人/看板/三色灯/MES 画面识别、素材质量、空镜分类、B-roll 匹配、工业节奏、候选镜头人工确认。当前 manifest 为 `planned + disabled`；现有 `work/factory_demo` 是历史原型，不是生产入口。
+拥有设备/产线/工人/看板/三色灯/MES镜头分类、素材质量、B-roll匹配、工业节奏、
+四类同步区、动作锚点、四轨资产、开放预览和剪映监督精修合同。当前manifest为
+启用的supervised-hybrid Beta；真实逐句听审、专业词、口型、动作、剪映导出和
+最终观感仍是人工门禁。
 
 ## case_study
 

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import os
 import platform
@@ -87,6 +88,14 @@ def collect_checks(config: AppConfig) -> list[CheckResult]:
             requirements.is_file(),
             "locked dependency file is present",
             f"missing dependency lock: {requirements}",
+        )
+    )
+    checks.append(
+        _result(
+            "pillow",
+            importlib.util.find_spec("PIL") is not None,
+            "Pillow runtime is available for factory title and subtitle metrics",
+            "Pillow runtime is missing; run the platform installer/bootstrap",
         )
     )
 
@@ -176,6 +185,29 @@ def collect_checks(config: AppConfig) -> list[CheckResult]:
     except (KeyError, OSError, RuntimeError, TypeError, ValueError) as exc:
         checks.append(
             CheckResult("video_diary_skill", CheckStatus.FAIL, str(exc))
+        )
+
+    try:
+        skills = discover_skills(PROJECT_ROOT)
+        factory = skills["factory_shoot"]
+        factory.load_entrypoint()
+        preset_paths = [
+            PROJECT_ROOT / str(path)
+            for path in factory.manifest.get("presets", [])
+        ]
+        missing_presets = [str(path) for path in preset_paths if not path.is_file()]
+        if missing_presets:
+            raise FileNotFoundError(", ".join(missing_presets))
+        checks.append(
+            CheckResult(
+                "factory_shoot_skill",
+                CheckStatus.PASS,
+                "factory supervised-Beta entrypoint and preset paths load successfully",
+            )
+        )
+    except (KeyError, OSError, RuntimeError, TypeError, ValueError) as exc:
+        checks.append(
+            CheckResult("factory_shoot_skill", CheckStatus.FAIL, str(exc))
         )
 
     violations = find_boundary_violations(PROJECT_ROOT)

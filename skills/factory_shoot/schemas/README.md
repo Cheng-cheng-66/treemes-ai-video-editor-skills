@@ -1,5 +1,5 @@
 # Schema index
 
-No production manifest schema or executable job schema is declared while this Skill remains
-disabled. `sync_zones`, `edit_plan` and `action_anchors` formats are experimental contracts
-described by the hybrid presets and ADR.
+The supervised Beta contract is validated by `skills/factory_shoot/contract.py`. The executable
+plan and caption examples live in `examples/`; each run writes normalized `sync_zones`,
+`edit_plan`, and `action_anchors` artifacts described by the hybrid presets and ADR.

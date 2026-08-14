@@ -15,7 +15,8 @@ class SkillBoundaryTests(unittest.TestCase):
             {"video_diary", "factory_shoot", "case_study"},
         )
         self.assertTrue(skills["video_diary"].enabled)
-        self.assertFalse(skills["factory_shoot"].enabled)
+        self.assertTrue(skills["factory_shoot"].enabled)
+        self.assertTrue(callable(skills["factory_shoot"].load_entrypoint()))
         self.assertTrue(skills["case_study"].enabled)
         self.assertIn("beta", skills["case_study"].status)
 

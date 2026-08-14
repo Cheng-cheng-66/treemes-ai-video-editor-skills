@@ -8,7 +8,7 @@ from typing import Any
 
 from PIL import ImageFont
 
-from skills.video_diary.aspect_ratio import (
+from skills.factory_shoot.aspect_ratio import (
     probe_source_geometry,
     resolve_output_geometry,
 )

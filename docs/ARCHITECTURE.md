@@ -6,7 +6,7 @@
 core/                         共用编排底座
 skills/
   video_diary/                视频日记专属规则与兼容渲染器
-  factory_shoot/              工厂实拍边界（未启用）
+  factory_shoot/              工厂实拍混合路线 Beta 执行入口
   case_study/                 客户案例 Beta 分析入口
 presets/                      可版本化场景规则
 configs/default.json          可版本化默认配置
@@ -31,13 +31,13 @@ Core 不包含视频日记标题规则、工厂镜头分类或客户案例叙事
 ```text
 本机配置/环境变量
         ↓
-Python CLI → Skill manifest → video_diary runner
+Python CLI → Skill manifest → 场景 runner
         ↓                       ↓
-路径/依赖校验             V5 兼容渲染器
+路径/依赖校验       视频日记V5 / 工厂四轨 / 案例分析
                                 ↓
                          FFmpeg / ffprobe
                                 ↓
-                    成片 + 日志 + QC/回归报告
+                    成片 + 规划资产 + QC/回归报告
 ```
 
 `edit_plan.json` 继续作为可复核的剪辑时间线来源；逐字字幕是独立输入。原素材只读，输出进入本机数据目录。

@@ -1,7 +1,7 @@
 # AI Video Editing Skills
 
 可迁移的 AI 自动剪辑底座与三个相互隔离的场景工作流。当前版本为
-`0.10.0-beta.3`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
+`0.10.0-beta.4`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
 真实素材、账号状态或受许可限制的媒体。
 
 ## 下载后双击安装（macOS）
@@ -9,7 +9,7 @@
 普通用户不需要复制安装指令：
 
 1. 下载
-   [`AI-Video-Editing-Skill-macOS-v0.10.0-beta.3.zip`](https://github.com/Cheng-cheng-66/treemes-ai-video-editor-skills/releases/download/v0.10.0-beta.3/AI-Video-Editing-Skill-macOS-v0.10.0-beta.3.zip)。
+   [`AI-Video-Editing-Skill-macOS-v0.10.0-beta.4.zip`](https://github.com/Cheng-cheng-66/treemes-ai-video-editor-skills/releases/download/v0.10.0-beta.4/AI-Video-Editing-Skill-macOS-v0.10.0-beta.4.zip)。
 2. 双击 ZIP 解压，再双击里面的 `安装.command`。
 3. 看到“安装成功”后重新打开 Codex。
 
@@ -32,7 +32,7 @@
 | Skill | 状态 | Enabled | 当前边界 |
 |---|---|---:|---|
 | `video_diary` | Beta | 是 | 可运行；自动技术检查通过不等于人工听看通过 |
-| `factory_shoot` | Planned / Experimental | 否 | 产品宣发归入此类型；混合路线预设和规则可读，暂无生产入口 |
+| `factory_shoot` | Beta supervised hybrid | 是 | 可执行四轨资产与开放预览；剪映原生音频和完整听看仍是人工门禁 |
 | `case_study` | Beta analysis | 是 | 分析、同步区和故事计划可运行；正式渲染仍需首条案例验收 |
 
 `factory_demo`、工厂实拍和产品宣发是同一业务类别。仓库保留实际目录名
@@ -89,6 +89,18 @@ Windows PowerShell：
 未显式指定画幅时继承源素材：横屏输出16:9，竖屏输出9:16；跨画幅转换需要
 明确授权。
 
+工厂实拍：
+
+```bash
+./.venv/bin/python scripts/run_factory_shoot.py \
+  --plan skills/factory_shoot/examples/edit_plan.json \
+  --captions skills/factory_shoot/examples/captions.json \
+  --output-dir var/outputs/factory_shoot_job
+```
+
+示例中的素材路径、SHA-256和时间段必须替换为当前原素材的真实值。输出包括
+规划文件、四轨资产、`fallback_preview.mp4`、剪映导入清单和质量报告。
+
 客户案例分析：
 
 ```bash
@@ -96,9 +108,9 @@ Windows PowerShell：
   --job skills/case_study/examples/job.json
 ```
 
-工厂实拍当前 `enabled=false`，不得绕过 manifest 强行当作无人值守生产入口。
-同步区、四轨资产和剪映混合路线见
-[`skills/factory_shoot/SKILL.md`](skills/factory_shoot/SKILL.md)。
+工厂实拍的确定性 Beta 入口已经启用。它可以生成可播放候选，但不会把尚未实际
+完成的剪映降噪、逐句听审、专业词、口型和叙事审核伪造成通过。同步区、四轨
+资产和剪映混合路线见 [`skills/factory_shoot/SKILL.md`](skills/factory_shoot/SKILL.md)。
 
 ## 三类工作流
 
@@ -112,8 +124,9 @@ Windows PowerShell：
 ### 工厂实拍／产品宣发
 
 长素材主题拆分和完整叙事优先。使用 `A_SYNC_LOCKED`、`B_SYNC_FLEX`、
-`C_AUDIO_FREE`、`D_ACTION_LOCKED` 区分口型、画外音和操作动作。当前可发布
-的是规则、预设与质量门禁；可执行入口仍为 disabled，不宣称生产就绪。
+`C_AUDIO_FREE`、`D_ACTION_LOCKED` 区分口型、画外音和操作动作。当前会实际
+生成确定性画面、四轨资产、开放工具预览和自动QC，再进入剪映监督音频精修与
+人工听看；自动PASS不等于最终发布验收。
 
 ### 客户案例
 
@@ -127,6 +140,7 @@ Windows PowerShell：
 ./.venv/bin/python scripts/doctor.py --strict
 ./.venv/bin/python -m unittest discover -s tests -v
 ./.venv/bin/python scripts/smoke_test.py
+./.venv/bin/python scripts/smoke_test_factory_shoot.py
 ```
 
 自动检查覆盖依赖、manifest、边界、画幅、字幕安全区、合成渲染和完整解码。
@@ -154,7 +168,8 @@ BGM听感、工厂连续性、客户事实、授权和最终叙事。未审核�
 ## 已知限制
 
 - `video_diary` 仍需每条成片人工完整听看。
-- `factory_shoot` manifest 为 `planned + disabled`。
+- `factory_shoot` 已启用 supervised hybrid Beta；剪映原生导出与最终人工验收不能
+  由开放预览代替。
 - `case_study` 尚未完成首条正式渲染验收。
 - 剪映GUI、版本、登录、会员和素材可用性无法由纯代码仓库保证。
 - 真实模型与测试素材不随仓库分发。
@@ -169,6 +184,6 @@ BGM听感、工厂连续性、客户事实、授权和最终叙事。未审核�
 
 - `vX.Y.Z-beta.N`：允许已记录的人工门禁，但不得隐藏自动测试失败。
 - `vX.Y.Z`：仅在自动、真实样片和人工门禁全部通过后使用。
-- 当前版本：`0.10.0-beta.3`，GitHub Release 必须标记 Pre-release。
+- 当前版本：`0.10.0-beta.4`，GitHub Release 必须标记 Pre-release。
 
 本仓库的授权状态见 [`LICENSE_STATUS.md`](LICENSE_STATUS.md)。

@@ -10,9 +10,11 @@ Treat the directory containing this file as `SKILL_ROOT`. Resolve every bundled 
 
 ## First use
 
-1. Read `VERSION` and run `python3 SKILL_ROOT/scripts/doctor.py --strict`.
+1. Read `VERSION`. Use `SKILL_ROOT/.venv/bin/python` when it exists; otherwise use `python3`.
+   Run that interpreter with `SKILL_ROOT/scripts/doctor.py --strict`.
 2. If the doctor reports missing runtime setup, run `SKILL_ROOT/scripts/install_macos.sh` on
-   macOS or `SKILL_ROOT/scripts/install_windows.ps1` on Windows, then rerun the doctor.
+   macOS or `SKILL_ROOT/scripts/install_windows.ps1` on Windows, then rerun the doctor with the
+   newly created virtual-environment interpreter.
 3. Report any missing external application, model, account entitlement, or human review as a
    blocker. Do not invent completion.
 
@@ -20,8 +22,8 @@ Treat the directory containing this file as `SKILL_ROOT`. Resolve every bundled 
 
 - Video diary: read `skills/video_diary/SKILL.md` and `skill.json`; this Beta route is enabled.
 - Factory shoot or product demonstration: read `skills/factory_shoot/SKILL.md` and
-  `skill.json`; unattended production is disabled, so produce only the permitted analysis or
-  plan unless a later manifest explicitly enables it.
+  `skill.json`; the supervised hybrid Beta is enabled and must produce a deterministic candidate,
+  planning artifacts, four-track assets, quality evidence, and explicit remaining human gates.
 - Customer case study: read `skills/case_study/SKILL.md` and `skill.json`; analysis is enabled,
   while rendering, facts, privacy, models, translation, and director acceptance retain their
   declared gates.

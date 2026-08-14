@@ -153,7 +153,7 @@ def write_readme(package_root: Path, config: dict) -> None:
 - 基础版本：{(PROJECT_ROOT / "VERSION").read_text(encoding="utf-8").strip()}
 - 正式 stable Release：尚未创建
 - 生产可用主流程：video_diary
-- factory_shoot：包含 disabled manifest、预设和说明；不包含客户特定原型或生产入口
+- factory_shoot：包含启用的混合路线Beta入口、预设、四轨资产和质量合同
 
 ## 新 Mac 部署
 
@@ -188,7 +188,7 @@ chmod +x DEPLOY_MACOS.sh scripts/install_macos.sh
 
 - 核心程序、配置、预设、Skills、安装脚本和自动测试；
 - 视频日记完整默认规则；
-- 工厂实拍与混合路线的预设、ADR和disabled边界；
+- 工厂实拍与混合路线的可执行Beta入口、预设、ADR和人工验收边界；
 - 迁移清单、逐文件SHA256和本地验证脚本。
 
 ## 明确不包含
@@ -205,7 +205,7 @@ chmod +x DEPLOY_MACOS.sh scripts/install_macos.sh
 
 1. 在新电脑登录剪映并绑定固定BGM；
 2. 提供一条真实视频日记素材，完整跑通并人工听审；
-3. 如启用工厂实拍，再提供真实原素材并重建四轨资产；
+3. 提供真实工厂原素材，通过启用的Beta入口重建四轨资产和开放预览；
 4. 人声、字幕、专业词、口型、BGM和连续性人工审核通过后，再启用生产。
 """,
         encoding="utf-8",

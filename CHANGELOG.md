@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.10.0-beta.4 - 2026-08-14
+
+### Fixed
+
+- 修复公开包将工厂实拍错误标记为 `planned + disabled` 的问题；该限制不是用户
+  决策，也不再阻止工厂实拍执行。
+
+### Added
+
+- 增加可调用的 `skills.factory_shoot.runner:run` 和 `scripts/run_factory_shoot.py`。
+- 增加工厂实拍计划合同、A/B/C/D同步区校验、动作锚点保护、真实源哈希验证、
+  源画幅继承、固定标题与单行字幕宽度检测。
+- 增加 `picture_master_no_audio.mp4`、`dialogue_raw.wav`、`ambience.wav`、
+  `bgm.wav`、开放工具预览、剪映四轨导入清单和完整自动QC/人工听审模板。
+- 增加工厂实拍合成端到端渲染、完整解码和未审核字段 `null` 保护测试。
+
+### Boundary
+
+- 启用表示能够实际生成可播放Beta候选和证据，不表示剪映原生降噪已经执行。
+- 字幕逐句匹配、专业词、口型、动作、故事完整性、BGM听感和最终观感仍需人工
+  审核，自动程序不得把这些字段从 `null` 改成通过。
+
 ## 0.10.0-beta.3 - 2026-08-14
 
 ### Added

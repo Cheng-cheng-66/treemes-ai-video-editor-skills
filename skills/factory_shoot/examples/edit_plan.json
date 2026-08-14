@@ -1,11 +1,87 @@
 {
   "schema_version": 1,
-  "status": "BLOCKED_DISABLED_SKILL",
-  "topic": "Example Factory dashboard demonstration",
-  "zones": [
-    {"start": 0.0, "end": 2.0, "type": "A_SYNC_LOCKED", "confidence": 0.9},
-    {"start": 2.0, "end": 6.0, "type": "C_AUDIO_FREE", "confidence": 0.9},
-    {"start": 3.0, "end": 4.0, "type": "D_ACTION_LOCKED", "confidence": 0.9}
+  "job_id": "replace_with_job_id",
+  "source": "/replace/with/read-only/source.mov",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "source_duration_seconds": 8.0,
+  "title": {
+    "lines": [
+      {"text": "三个生产难题", "color": "yellow"},
+      {"text": "MES如何解决", "color": "white"}
+    ],
+    "approved": true
+  },
+  "picture_segments": [
+    {
+      "id": "speaker_open",
+      "picture_source": {"start": 0.0, "end": 2.0},
+      "dialogue_source_ranges": [{"start": 0.0, "end": 2.0}],
+      "sync_zone": "A_SYNC_LOCKED",
+      "current_speaker": "speaker_1",
+      "visual_type": "front_speaker",
+      "mouth_visible": true,
+      "hand_action": null,
+      "next_sync_anchor": "speaker_open",
+      "edit_reason": "retain the complete problem premise",
+      "risk_level": "high",
+      "confidence": 0.96,
+      "assignment_method": "automatic"
+    },
+    {
+      "id": "tablet_demo",
+      "picture_source": {"start": 2.0, "end": 6.0},
+      "dialogue_source_ranges": [
+        {"start": 2.0, "end": 3.0},
+        {"start": 4.0, "end": 5.0}
+      ],
+      "sync_zone": "C_AUDIO_FREE",
+      "current_speaker": "speaker_1_voice_over",
+      "visual_type": "continuous_tablet_operation",
+      "mouth_visible": false,
+      "hand_action": "tap_and_swipe",
+      "next_sync_anchor": "speaker_return",
+      "edit_reason": "match the spoken MES function to its operation",
+      "risk_level": "medium",
+      "confidence": 0.97,
+      "assignment_method": "automatic"
+    },
+    {
+      "id": "speaker_return",
+      "picture_source": {"start": 6.0, "end": 8.0},
+      "dialogue_source_ranges": [{"start": 6.0, "end": 8.0}],
+      "sync_zone": "A_SYNC_LOCKED",
+      "current_speaker": "speaker_1",
+      "visual_type": "front_speaker_return",
+      "mouth_visible": true,
+      "hand_action": null,
+      "next_sync_anchor": "speaker_return",
+      "edit_reason": "restore the visible-speaker sync anchor",
+      "risk_level": "high",
+      "confidence": 0.96,
+      "assignment_method": "automatic"
+    }
   ],
-  "human_review_required": true
+  "action_anchors": [
+    {
+      "id": "tablet_tap",
+      "segment_id": "tablet_demo",
+      "source_start": 2.5,
+      "source_end": 3.2,
+      "action": "complete tablet tap",
+      "confidence": 0.97
+    }
+  ],
+  "ambience_source_ranges": [{"start": 3.0, "end": 3.5}],
+  "image_treatment": {
+    "brightness": 0.0,
+    "contrast": 1.0,
+    "saturation": 1.0,
+    "sharpen": 0.0
+  },
+  "human_review": {
+    "transcript_pass": null,
+    "professional_terms_pass": null,
+    "story_pass": null,
+    "playback_pass": null
+  }
 }

@@ -1,8 +1,8 @@
 schema_version: 1
 preset_id: factory_demo_opening_title_v1
 locked: true
-batch_application_enabled: false
-confirmation_status: awaiting_user_confirmation
+batch_application_enabled: true
+confirmation_status: confirmed_for_factory_beta_with_per_video_wording_approval
 
 canvas:
   width: 1080
@@ -51,4 +51,3 @@ content:
 evidence:
   reference_profile: references/factory_demo/style_profile.yaml
   preview: outputs/factory_demo/factory_demo_title_preview_v1.png
-

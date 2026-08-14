@@ -20,6 +20,7 @@
    python3 scripts/doctor.py
    python3 -m unittest discover -s tests -v
    python3 scripts/smoke_test.py
+   python3 scripts/smoke_test_factory_shoot.py
    python3 scripts/regression.py
    ```
 
