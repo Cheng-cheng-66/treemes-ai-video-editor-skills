@@ -14,9 +14,24 @@ from scripts.validate_github_release import (
 
 class GitHubReleasePackageTests(unittest.TestCase):
     def test_actual_version_is_beta(self):
-        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.1")
+        self.assertEqual((ROOT / "VERSION").read_text().strip(), "0.10.0-beta.2")
         config = json.loads((ROOT / "configs/default.json").read_text())
         self.assertEqual(config["channel"], "beta")
+
+    def test_repository_root_is_the_installable_umbrella_skill(self):
+        metadata = parse_skill_frontmatter(ROOT / "SKILL.md")
+        self.assertEqual(metadata["name"], "ai-video-editing-skills")
+        self.assertTrue((ROOT / "agents/openai.yaml").is_file())
+        for relative in (
+            "core/config.py",
+            "presets/video_diary/cover.yaml",
+            "presets/factory_demo_hybrid/editorial.yaml",
+            "presets/case_video/editorial.yaml",
+            "scripts/doctor.py",
+            "scripts/run_video_diary.py",
+            "scripts/run_case_study.py",
+        ):
+            self.assertTrue((ROOT / relative).is_file(), relative)
 
     def test_three_skill_packages_are_self_describing(self):
         for skill in SKILLS:

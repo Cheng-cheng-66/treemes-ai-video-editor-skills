@@ -1,23 +1,40 @@
 ---
 name: ai-video-editing-skills
-description: Route AI-assisted video editing requests to the existing video-diary, factory-shoot, or case-study workflows. Use for installing, diagnosing, planning, rendering, quality-checking, updating, or rolling back this repository without changing approved editing behavior or exposing customer media.
+description: Install, diagnose, and run the bundled AI video-editing workflows for video diaries, factory footage, product demonstrations, and MES customer case studies. Use when Codex must analyze footage, plan or render an edit, preserve verbatim speech and professional terms, create Chinese or English subtitles, apply approved templates, coordinate Jianying audio finishing, or produce automatic and human-review quality reports.
 ---
 
 # AI Video Editing Skills
 
-1. Read `VERSION`, the selected Skill's `skill.json`, and its `SKILL.md`.
-2. Refuse to enable a disabled Skill implicitly.
-3. Keep source media read-only and store runtime data outside Git.
-4. Produce an explicit edit plan before rendering.
-5. Run automatic QC, then preserve all human review gates as separate states.
-6. Never change spoken meaning, professional terms, customer facts, or authorization status.
-7. Use `scripts/doctor.py --strict` before execution and after update or rollback.
+Treat the directory containing this file as `SKILL_ROOT`. Resolve every bundled path from
+`SKILL_ROOT`; never assume the current working directory is the repository.
 
-Select exactly one scene Skill:
+## First use
 
-- `skills/video_diary/SKILL.md`
-- `skills/factory_shoot/SKILL.md`
-- `skills/case_study/SKILL.md`
+1. Read `VERSION` and run `python3 SKILL_ROOT/scripts/doctor.py --strict`.
+2. If the doctor reports missing runtime setup, run `SKILL_ROOT/scripts/install_macos.sh` on
+   macOS or `SKILL_ROOT/scripts/install_windows.ps1` on Windows, then rerun the doctor.
+3. Report any missing external application, model, account entitlement, or human review as a
+   blocker. Do not invent completion.
 
-If no scene matches, stop and request a classification decision. Do not combine presets across
-Skills.
+## Route exactly one workflow
+
+- Video diary: read `skills/video_diary/SKILL.md` and `skill.json`; this Beta route is enabled.
+- Factory shoot or product demonstration: read `skills/factory_shoot/SKILL.md` and
+  `skill.json`; unattended production is disabled, so produce only the permitted analysis or
+  plan unless a later manifest explicitly enables it.
+- Customer case study: read `skills/case_study/SKILL.md` and `skill.json`; analysis is enabled,
+  while rendering, facts, privacy, models, translation, and director acceptance retain their
+  declared gates.
+
+If no scene matches, request classification instead of combining presets.
+
+## Universal rules
+
+1. Keep source media read-only and put runtime data under the configured runtime directory.
+2. Produce a traceable edit plan before rendering or shortening content.
+3. Never rewrite spoken meaning, professional terms, customer facts, or authorization status.
+4. Use only the selected workflow's presets; never mix scene templates.
+5. Run automatic QC, then preserve listening, viewing, fact, privacy, lip-sync, and language
+   review as separate human gates.
+6. Do not claim Jianying processing unless the entitled desktop application actually completed
+   and exported the file.

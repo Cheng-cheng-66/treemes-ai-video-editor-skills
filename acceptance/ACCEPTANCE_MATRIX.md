@@ -1,6 +1,6 @@
 # Beta release acceptance matrix
 
-Version: `0.10.0-beta.1`
+Version: `0.10.0-beta.2`
 
 Automatic status uses `NOT_RUN`, `PASS`, `FAIL` or `BLOCKED`. Human status uses
 `NOT_REVIEWED`, `PASS`, `FAIL` or `NOT_APPLICABLE`.

@@ -16,6 +16,17 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 SKILLS = ("video_diary", "factory_shoot", "case_study")
+ROOT_SKILL_REQUIRED = (
+    "SKILL.md",
+    "agents/openai.yaml",
+    "core/config.py",
+    "scripts/doctor.py",
+    "scripts/run_video_diary.py",
+    "scripts/run_case_study.py",
+    "presets/video_diary/cover.yaml",
+    "presets/factory_demo_hybrid/editorial.yaml",
+    "presets/case_video/editorial.yaml",
+)
 REQUIRED_SKILL_ENTRIES = (
     "SKILL.md",
     "README.md",
@@ -170,6 +181,15 @@ def main() -> int:
 
     manifests = {}
     errors: list[str] = []
+    for relative in ROOT_SKILL_REQUIRED:
+        if not (ROOT / relative).is_file():
+            errors.append(f"missing root Skill entry: {relative}")
+    try:
+        root_skill = parse_skill_frontmatter(ROOT / "SKILL.md")
+        if root_skill.get("name") != "ai-video-editing-skills":
+            errors.append("root Skill name must be ai-video-editing-skills")
+    except (OSError, ValueError) as exc:
+        errors.append(str(exc))
     for skill in SKILLS:
         root = ROOT / "skills" / skill
         for entry in REQUIRED_SKILL_ENTRIES:

@@ -1,10 +1,10 @@
 # Current status
 
-Updated: 2026-08-06
+Updated: 2026-08-14
 
 ## Release identity
 
-- Version: `0.10.0-beta.1`
+- Version: `0.10.0-beta.2`
 - Channel: `beta`
 - Stable release: not created
 - Release decision: `PRE_RELEASE_ONLY`
@@ -21,6 +21,10 @@ Updated: 2026-08-06
 
 ## Release boundaries
 
+- The repository root is the only supported Codex installation unit. Installing an individual
+  scene directory is unsupported because shared runtime modules and presets live at the root.
+- Official Skill-installer root installation and isolated strict-doctor execution are required
+  release checks.
 - No raw media, rendered video, customer image, audio, model, Jianying draft, runtime report,
   credential, login state or machine-local configuration is included.
 - Automatic technical checks do not replace complete human listening, subtitle, lip-sync,

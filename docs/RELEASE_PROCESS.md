@@ -9,7 +9,7 @@
 - `v2.0.0`：破坏性架构升级或客户案例正式上线。
 - 预发布使用 `vX.Y.Z-beta.N`。
 
-当前代码版本为 `0.10.0-beta.1`，不是 stable Release。
+当前代码版本为 `0.10.0-beta.2`，不是 stable Release。
 
 ## stable
 
