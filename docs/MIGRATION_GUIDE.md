@@ -28,7 +28,8 @@
 
 ## 新电脑安装
 
-1. 安装 Git、Python 3.11+、Node.js、FFmpeg/ffprobe。
+1. 安装 Git、Python 3.11+、剪映专业版7.9.0并登录有权益的账号。双击安装器会在
+   已有Homebrew时尝试补齐Node.js和FFmpeg/ffprobe；无法补齐时必须停止。
 2. 从私有仓库只克隆 `main` 或明确的正式 Release；不要默认使用 `develop`。
 3. macOS 执行：
 
@@ -48,6 +49,7 @@
 
    ```bash
    python3 scripts/doctor.py --strict
+   python3 scripts/doctor.py --strict --workflow factory_shoot --complete
    python3 scripts/smoke_test.py
    python3 scripts/smoke_test_factory_shoot.py
    ```
@@ -67,6 +69,8 @@ python3 scripts/regression.py
 
 - `source media not found`：检查挂载点和 `edit_plan.json` 的本机源路径。
 - `missing configured fonts`：在 `configs/local.json` 选择/覆盖新电脑字体，不要改业务代码。
-- `ffmpeg/node not available`：安装系统依赖并重开终端。
+- `ffmpeg/node not available`：重新运行双击安装器；无Homebrew时先完成系统依赖安装，
+  不得改用粗剪交付。
+- `Jianying Pro is required`：安装并登录剪映专业版7.9.0；不得跳过到技术预览。
 - 字幕超宽：调整字幕事件切分，不允许自动缩小、双行或改写。
 - 磁盘空间不足：先扩容或更换数据根，不删除现有素材/成片来“通过”检查。

@@ -6,7 +6,7 @@
 core/                         共用编排底座
 skills/
   video_diary/                视频日记专属规则与兼容渲染器
-  factory_shoot/              工厂实拍混合路线 Beta 执行入口
+  factory_shoot/              工厂实拍完整失败关闭 Beta 入口
   case_study/                 客户案例 Beta 分析入口
 presets/                      可版本化场景规则
 configs/default.json          可版本化默认配置
@@ -37,7 +37,11 @@ Python CLI → Skill manifest → 场景 runner
                                 ↓
                          FFmpeg / ffprobe
                                 ↓
-                    成片 + 规划资产 + QC/回归报告
+                   四轨暂存 + NOT_DELIVERABLE技术预览
+                                ↓
+              剪映UI降噪/字幕确认/BGM/导出 + 人工听审
+                                ↓
+                   finalize验证 → 最终成片 + QC证据
 ```
 
 `edit_plan.json` 继续作为可复核的剪辑时间线来源；逐字字幕是独立输入。原素材只读，输出进入本机数据目录。

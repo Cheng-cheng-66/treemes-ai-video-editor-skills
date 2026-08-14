@@ -1,7 +1,7 @@
 # factory_shoot
 
-Factory-floor and product-promotion Beta workflow. The manifest is enabled and routes approved
-plans through deterministic four-track rendering, open preview export, and quality evidence;
-Jianying finishing and complete human listening/viewing remain separate gates.
+Factory-floor and product-promotion complete fail-closed Beta workflow. The manifest routes
+approved plans through deterministic four-track staging, mandatory Jianying finishing, actual
+export validation, and complete human listening/viewing before a final path is returned.
 Canonical rules are in `presets/factory_demo/` and `presets/factory_demo_hybrid/`; they are
-active for the supervised Beta route, but they do not constitute unattended final acceptance.
+active for this route. Technical preview is opt-in and never deliverable as a final video.

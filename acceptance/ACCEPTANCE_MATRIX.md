@@ -1,6 +1,6 @@
 # Beta release acceptance matrix
 
-Version: `0.10.0-beta.4`
+Version: `0.10.0-beta.5`
 
 Automatic status uses `NOT_RUN`, `PASS`, `FAIL` or `BLOCKED`. Human status uses
 `NOT_REVIEWED`, `PASS`, `FAIL` or `NOT_APPLICABLE`.
@@ -16,8 +16,8 @@ Automatic status uses `NOT_RUN`, `PASS`, `FAIL` or `BLOCKED`. Human status uses
 | clean clone/install | PASS | generated clean-install report |
 | downloadable ZIP shape/checksum/install | PASS | package tests and isolated CODEX_HOME |
 | real video-diary listening | manual gate | may remain NOT_REVIEWED in beta |
-| factory-shoot synthetic candidate | PASS | four tracks, fallback preview, QC and full decode |
-| factory-shoot Jianying + human acceptance | manual gate | must remain NOT_REVIEWED until executed |
+| factory-shoot technical staging | PASS | four tracks, NOT_DELIVERABLE preview, QC and full decode |
+| factory-shoot Jianying + human acceptance | fail-closed gate | no final path until every field passes |
 | case-study first formal render | pending | must not be represented as approved |
 
 A beta tag is allowed only when every automatic gate passes and every remaining manual gate is

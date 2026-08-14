@@ -24,15 +24,18 @@ two parents above it. Read `skill.json` and both `presets/factory_demo/` and
 4. Write a plan matching `examples/edit_plan.json` and final-timeline captions matching
    `examples/captions.json`. Set `title.approved=true` only after the title wording is selected;
    a title may summarize, but captions may not.
-5. Run `python3 scripts/run_factory_shoot.py --plan PLAN --captions CAPTIONS --output-dir RUN`.
-   Add `--bgm FILE` only when the music is licensed and locally available.
-6. Inspect `quality_report.json`. An automatic PASS means a rendered Beta candidate exists; it
-   does not complete the protected human fields.
-7. Import V1/A1/A2/A3 according to `jianying_import_manifest.json`, apply native dialogue noise
-   reduction, and export without changing the picture, title, or subtitles. Never claim this
-   stage unless the app actually exports.
-8. Complete the sentence review and whole-video listening/viewing review. Only then may an
-   operator mark the job complete.
+5. Run complete preflight: `python3 scripts/doctor.py --strict --workflow factory_shoot
+   --complete`. Stop on every failure.
+6. Run `python3 scripts/run_factory_shoot.py prepare --plan PLAN --captions CAPTIONS
+   --output-dir RUN`. Add `--bgm FILE` only when the music is licensed and locally available.
+   This command generates four-track assets and launches Jianying, but returns no deliverable.
+7. Read `references/jianying_complete_workflow.md` completely. Use Codex Desktop computer control
+   to import V1/A1/A2/A3, enable native dialogue noise reduction, confirm subtitles, add/confirm
+   BGM, mix, export, and retain visual evidence. Do not stop after merely opening Jianying.
+8. Complete the generated sentence review and whole-video listening/viewing review from actual
+   playback.
+9. Run the documented `finalize` command. Only its `COMPLETE` response and `final_video` path may
+   be delivered.
 
 ## Hard rules
 
@@ -42,10 +45,13 @@ two parents above it. Read `skill.json` and both `presets/factory_demo/` and
 - Never mark lip sync, word loss or perceptual continuity as passed without human review.
 - Never turn unreviewed word match, lip sync, action completeness, denoise quality, BGM balance,
   story completeness, or perceptual continuity from `null` into a pass.
+- Never deliver `technical_preview_NOT_DELIVERABLE.mp4` as a finished or usable final video.
+- Never switch to ChatCut, an open preview, or another renderer merely because FFmpeg or Jianying
+  is missing.
 
 ## Fallback
 
-The executable route always produces `fallback_preview.mp4` when its automatic gates pass. If
-Jianying, its login, membership, or licensed music is unavailable, deliver that file explicitly
-as the open-tool fallback and keep the Jianying/native-audio fields incomplete. Do not block the
-entire factory workflow merely because Jianying is unavailable.
+Preview mode exists only for a user who explicitly asks for a technical preview. Run the `preview`
+subcommand and label its result `NOT_DELIVERABLE`. If the user asked for the complete workflow,
+missing FFmpeg, Jianying, login, entitlement, BGM, computer control, export, subtitles, or review
+must block completion; never substitute the preview.

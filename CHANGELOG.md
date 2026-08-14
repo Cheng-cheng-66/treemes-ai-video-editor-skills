@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.10.0-beta.5 - 2026-08-14
+
+### Fixed
+
+- 修复另一台电脑缺少FFmpeg时安装器仍显示成功的问题；Homebrew存在时自动补齐，
+  无法补齐时停止安装且不替换旧版本。
+- 修复工厂实拍技术预览被当成完整成片交付的问题。
+- 修复工厂实拍只生成剪映清单、却没有强制启动和操作剪映的问题。
+
+### Changed
+
+- 工厂实拍默认改为complete fail-closed：字幕、剪映7.9.0、原生降噪、BGM、实际
+  导出、UI截图/动作日志和逐句人工听审缺一不可。
+- 开放预览改名为`technical_preview_NOT_DELIVERABLE.mp4`，只有用户明确要求
+  `preview`时才允许返回。
+- 新增`prepare`、`preview`、`finalize`三阶段CLI和完整导出验证器。
+
 ## 0.10.0-beta.4 - 2026-08-14
 
 ### Fixed

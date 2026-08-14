@@ -32,6 +32,8 @@ var/
 runs/
 experiments/
 references/
+!skills/*/references/
+!skills/*/references/**
 reports/
 work/
 tmp/

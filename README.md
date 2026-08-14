@@ -1,7 +1,7 @@
 # AI Video Editing Skills
 
 可迁移的 AI 自动剪辑底座与三个相互隔离的场景工作流。当前版本为
-`0.10.0-beta.4`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
+`0.10.0-beta.5`，以仓库根目录作为一个可安装的 Codex 总控 Skill；不包含任何
 真实素材、账号状态或受许可限制的媒体。
 
 ## 下载后双击安装（macOS）
@@ -9,14 +9,14 @@
 普通用户不需要复制安装指令：
 
 1. 下载
-   [`AI-Video-Editing-Skill-macOS-v0.10.0-beta.4.zip`](https://github.com/Cheng-cheng-66/treemes-ai-video-editor-skills/releases/download/v0.10.0-beta.4/AI-Video-Editing-Skill-macOS-v0.10.0-beta.4.zip)。
+   [`AI-Video-Editing-Skill-macOS-v0.10.0-beta.5.zip`](https://github.com/Cheng-cheng-66/treemes-ai-video-editor-skills/releases/download/v0.10.0-beta.5/AI-Video-Editing-Skill-macOS-v0.10.0-beta.5.zip)。
 2. 双击 ZIP 解压，再双击里面的 `安装.command`。
 3. 看到“安装成功”后重新打开 Codex。
 
 然后直接说：
 
 ```text
-视频日记，处理我上传的视频。
+工厂实拍，按完整工作流处理我上传的视频。
 ```
 
 安装器会自动放到 Codex 的 Skill 目录；如已安装旧版，会先保留时间戳备份。
@@ -32,7 +32,7 @@
 | Skill | 状态 | Enabled | 当前边界 |
 |---|---|---:|---|
 | `video_diary` | Beta | 是 | 可运行；自动技术检查通过不等于人工听看通过 |
-| `factory_shoot` | Beta supervised hybrid | 是 | 可执行四轨资产与开放预览；剪映原生音频和完整听看仍是人工门禁 |
+| `factory_shoot` | Beta complete fail-closed | 是 | 默认必须实际进入剪映、降噪、字幕、BGM、导出与听审；缺项不交付 |
 | `case_study` | Beta analysis | 是 | 分析、同步区和故事计划可运行；正式渲染仍需首条案例验收 |
 
 `factory_demo`、工厂实拍和产品宣发是同一业务类别。仓库保留实际目录名
@@ -70,8 +70,9 @@ Windows PowerShell：
 ```
 
 这一节用于开发和维护；普通 Codex 用户优先使用上方的下载安装包。
-`bootstrap` 会安装 `requirements.lock`、建立本机运行目录并执行测试。模型、
-剪映、BGM权益和客户素材不会随仓库安装。
+`bootstrap` 会安装 `requirements.lock`、建立本机运行目录并执行测试。安装器会在
+已有Homebrew时自动补齐FFmpeg/Node；剪映本体、账号登录、BGM权益和客户素材不能
+随仓库分发，缺少时安装会明确停止，不会假装完整工作流可用。
 
 ## 使用
 
@@ -92,14 +93,19 @@ Windows PowerShell：
 工厂实拍：
 
 ```bash
-./.venv/bin/python scripts/run_factory_shoot.py \
+./.venv/bin/python scripts/doctor.py --strict --workflow factory_shoot --complete
+./.venv/bin/python scripts/run_factory_shoot.py prepare \
   --plan skills/factory_shoot/examples/edit_plan.json \
   --captions skills/factory_shoot/examples/captions.json \
   --output-dir var/outputs/factory_shoot_job
 ```
 
 示例中的素材路径、SHA-256和时间段必须替换为当前原素材的真实值。输出包括
-规划文件、四轨资产、`fallback_preview.mp4`、剪映导入清单和质量报告。
+规划文件和四轨资产，然后自动启动剪映。Codex必须继续操作剪映、启用原生降噪、
+确认字幕与BGM、实际导出并运行`finalize`；在此之前不会返回最终成片路径。
+
+`preview`是用户明确要求技术预览时才可使用的降级命令，输出文件固定包含
+`NOT_DELIVERABLE`，不得冒充完整成片。
 
 客户案例分析：
 
@@ -108,9 +114,9 @@ Windows PowerShell：
   --job skills/case_study/examples/job.json
 ```
 
-工厂实拍的确定性 Beta 入口已经启用。它可以生成可播放候选，但不会把尚未实际
-完成的剪映降噪、逐句听审、专业词、口型和叙事审核伪造成通过。同步区、四轨
-资产和剪映混合路线见 [`skills/factory_shoot/SKILL.md`](skills/factory_shoot/SKILL.md)。
+工厂实拍的完整Beta入口已经启用并默认失败关闭。缺少FFmpeg、剪映、字幕、降噪、
+BGM、实际导出或人工听审时任务必须停止，不能交付开放工具粗剪。完整UI步骤见
+[`skills/factory_shoot/references/jianying_complete_workflow.md`](skills/factory_shoot/references/jianying_complete_workflow.md)。
 
 ## 三类工作流
 
@@ -125,8 +131,8 @@ Windows PowerShell：
 
 长素材主题拆分和完整叙事优先。使用 `A_SYNC_LOCKED`、`B_SYNC_FLEX`、
 `C_AUDIO_FREE`、`D_ACTION_LOCKED` 区分口型、画外音和操作动作。当前会实际
-生成确定性画面、四轨资产、开放工具预览和自动QC，再进入剪映监督音频精修与
-人工听看；自动PASS不等于最终发布验收。
+生成确定性画面和四轨资产后，必须继续完成剪映监督音频精修、实际导出与人工
+听看；默认模式没有“先交粗剪”的出口。
 
 ### 客户案例
 
@@ -168,8 +174,8 @@ BGM听感、工厂连续性、客户事实、授权和最终叙事。未审核�
 ## 已知限制
 
 - `video_diary` 仍需每条成片人工完整听看。
-- `factory_shoot` 已启用 supervised hybrid Beta；剪映原生导出与最终人工验收不能
-  由开放预览代替。
+- `factory_shoot` 已启用失败关闭的完整Beta；技术预览只有明确授权才生成，而且
+  永远不能代替剪映原生导出与最终人工验收。
 - `case_study` 尚未完成首条正式渲染验收。
 - 剪映GUI、版本、登录、会员和素材可用性无法由纯代码仓库保证。
 - 真实模型与测试素材不随仓库分发。
@@ -184,6 +190,6 @@ BGM听感、工厂连续性、客户事实、授权和最终叙事。未审核�
 
 - `vX.Y.Z-beta.N`：允许已记录的人工门禁，但不得隐藏自动测试失败。
 - `vX.Y.Z`：仅在自动、真实样片和人工门禁全部通过后使用。
-- 当前版本：`0.10.0-beta.4`，GitHub Release 必须标记 Pre-release。
+- 当前版本：`0.10.0-beta.5`，GitHub Release 必须标记 Pre-release。
 
 本仓库的授权状态见 [`LICENSE_STATUS.md`](LICENSE_STATUS.md)。

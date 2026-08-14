@@ -4,7 +4,7 @@ Updated: 2026-08-14
 
 ## Release identity
 
-- Version: `0.10.0-beta.4`
+- Version: `0.10.0-beta.5`
 - Channel: `beta`
 - Stable release: not created
 - Release decision: `PRE_RELEASE_ONLY`
@@ -13,9 +13,9 @@ Updated: 2026-08-14
 
 - `video_diary`: enabled Beta; source aspect inheritance, fixed templates, verbatim captions,
   Jianying voice-only `+10 dB` and BGM `-8 dB` contracts are present.
-- `factory_shoot`: enabled supervised-hybrid Beta. Product-promotion videos map to this Skill.
-  It validates an editorial plan, builds planning evidence and four-track assets, exports an
-  open-tool fallback candidate, and keeps Jianying/native-audio plus human review separate.
+- `factory_shoot`: enabled complete fail-closed Beta. Product-promotion videos map to this Skill.
+  Default execution requires FFmpeg, captions, Jianying launch/UI processing, native denoise,
+  BGM, actual export evidence and completed human review before a final path is emitted.
 - `case_study`: enabled Beta analysis. Source analysis, transcript alignment, sync zones,
   pause analysis and story planning are present; first formal render acceptance remains open.
 
@@ -39,6 +39,6 @@ Updated: 2026-08-14
 
 - Another physical Mac installation and real-source shadow test: `NOT_REVIEWED`.
 - Video-diary final listening and peak safety for each export: manual gate.
-- Factory-shoot deterministic candidate entrypoint: enabled; Jianying export, complete listening,
-  terminology, lip-sync, action, story and perceptual review remain manual gates.
+- Factory-shoot complete entrypoint: enabled and fail-closed. Computer-controlled Jianying UI and
+  human semantic/listening review are required stages, not optional post-processing.
 - Case-study first production render and director approval: pending.

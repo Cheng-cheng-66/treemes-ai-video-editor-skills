@@ -11,19 +11,22 @@ Treat the directory containing this file as `SKILL_ROOT`. Resolve every bundled 
 ## First use
 
 1. Read `VERSION`. Use `SKILL_ROOT/.venv/bin/python` when it exists; otherwise use `python3`.
-   Run that interpreter with `SKILL_ROOT/scripts/doctor.py --strict`.
-2. If the doctor reports missing runtime setup, run `SKILL_ROOT/scripts/install_macos.sh` on
-   macOS or `SKILL_ROOT/scripts/install_windows.ps1` on Windows, then rerun the doctor with the
-   newly created virtual-environment interpreter.
-3. Report any missing external application, model, account entitlement, or human review as a
+2. For a complete factory request, run `scripts/doctor.py --strict --workflow factory_shoot
+   --complete` before analyzing or rendering. Missing FFmpeg, ffprobe, subtitles, or Jianying is a
+   blocker; never silently select another renderer.
+3. On macOS, repair missing media commands with `scripts/macos_preflight.py --install-missing
+   --require-jianying`, then run `scripts/install_macos.sh` and repeat the complete doctor.
+4. For other workflows, run `scripts/doctor.py --strict` and follow their scene instructions.
+5. Report any missing external application, model, account entitlement, or human review as a
    blocker. Do not invent completion.
 
 ## Route exactly one workflow
 
 - Video diary: read `skills/video_diary/SKILL.md` and `skill.json`; this Beta route is enabled.
 - Factory shoot or product demonstration: read `skills/factory_shoot/SKILL.md` and
-  `skill.json`; the supervised hybrid Beta is enabled and must produce a deterministic candidate,
-  planning artifacts, four-track assets, quality evidence, and explicit remaining human gates.
+  `skill.json`; complete mode is the default. It must continue through actual Jianying UI audio
+  processing, export, evidence, and review. Technical preview is allowed only when the user
+  explicitly requests a preview and may never be returned as the final video.
 - Customer case study: read `skills/case_study/SKILL.md` and `skill.json`; analysis is enabled,
   while rendering, facts, privacy, models, translation, and director acceptance retain their
   declared gates.
@@ -40,3 +43,4 @@ If no scene matches, request classification instead of combining presets.
    review as separate human gates.
 6. Do not claim Jianying processing unless the entitled desktop application actually completed
    and exported the file.
+7. Do not return any path containing `NOT_DELIVERABLE` as a completed video.

@@ -1,4 +1,4 @@
 interface:
   display_name: "AI 视频剪辑工作流"
-  short_description: "Run video diary, factory shoot, and case workflows"
-  default_prompt: "Use $ai-video-editing-skills to select and execute the correct guarded video workflow for my uploaded source."
+  short_description: "Run complete video diary, factory, and case workflows"
+  default_prompt: "Use $ai-video-editing-skills to execute the complete workflow for my uploaded video. Do not deliver a technical preview or skip FFmpeg, subtitles, Jianying processing, export evidence, or final review."
