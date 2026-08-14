@@ -64,7 +64,7 @@ def _scaled_style(width: int, height: int) -> dict[str, int]:
         "subtitle_outline": max(2, round(7 * scale)),
         "subtitle_margin_v": max(24, round((1920 - 1280) * scale)),
         "subtitle_safe_width": round(width * 0.90),
-        "title_size": max(28, round(118 * scale)),
+        "title_size": max(16, round(118 * scale)),
         "title_outline": max(2, round(14 * scale)),
     }
 
